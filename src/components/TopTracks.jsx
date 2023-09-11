@@ -1,29 +1,35 @@
 import { useState, useEffect } from 'react'
-import { Card, CardHeader, CardBody, CardFooter, Image, Button, Select, SelectItem, CircularProgress, Link } from '@nextui-org/react'
+import { Card, CardHeader, CardBody, Button, Select, SelectItem, CircularProgress } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
+import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
+import { TrackCard } from './TrackCard'
+import { TrackList } from './TrackList'
 import { ranges, limits } from '../constants/lists'
-import getTopArtists from '../api/topArtists'
-import { ArtistCard } from './ArtistCard'
-import { ArtistList } from './ArtistList'
+import getTopTracks from '../api/topTracks'
 
-export function TopArtists() {
-    const [topArtists, setTopArtists] = useState([])
+export function TopTracks() {
+    const [topTracks, setTopTracks] = useState([])
     const [selectedRange, setSelectedRange] = useState()
     const [selectedLimit, setSelectedLimit] = useState()
     const [modeList, setModeList] = useState(false)
 
     useEffect(() => {
-        fetchTopArtists()
+        fetchTopTracks()
     }, [])
 
-    async function fetchTopArtists(selectedRange, selectedLimit) {
+    async function fetchTopTracks(selectedRange, selectedLimit) {
         try {
-            const response = await getTopArtists(selectedRange, selectedLimit)
-            setTopArtists(response)
+            const response = await getTopTracks(selectedRange, selectedLimit)
+            setTopTracks(response)
         } catch (error) {
-            console.error('Error fetching top artists:', error)
+            console.error('Error fetching top tracks:', error)
         }
+    }
+
+    const playPreview = (previewUrl) => {
+        if (previewUrl === null) return
+        const audio = new Audio(previewUrl)
+        audio.play()
     }
 
     const toggleModeList = () => {
@@ -31,10 +37,10 @@ export function TopArtists() {
     }
 
     return (
-        <Card className='p-4'>
+        <Card className='min-w-full p-4'>
             <CardHeader className='flex flex-col sm:flex-row justify-between gap-3'>
                 <h3 className='w-full text-2xl sm:text-4xl font-bold'>
-                    Top <span className='text-green-400'>Artists</span>
+                    Top <span className='text-green-400'>Songs</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
                     <Button
@@ -58,7 +64,7 @@ export function TopArtists() {
                         onChange={(e) => {
                             const selected = e.target.value
                             setSelectedLimit(selected)
-                            fetchTopArtists(selectedRange, selected)
+                            fetchTopTracks(selectedRange, selected)
                         }}
                     >
                         {limits.map((limit) => (
@@ -76,7 +82,7 @@ export function TopArtists() {
                         onChange={(e) => {
                             const selected = e.target.value
                             setSelectedRange(selected)
-                            fetchTopArtists(selected, selectedLimit)
+                            fetchTopTracks(selected, selectedLimit)
                         }}
                     >
                         {ranges.map((range) => (
@@ -88,22 +94,21 @@ export function TopArtists() {
                 </div>
             </CardHeader>
             <CardBody className='px-3'>
-                {topArtists.length === 0 && <CircularProgress className='self-center' color='success' />}
+                {topTracks.length === 0 && <CircularProgress className='self-center' color='success' />}
 
                 {!modeList ? (
                     <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3'>
-                        {topArtists.map((artist, index) => (
-                            <ArtistCard key={index} index={index + 1} artist={artist} />
+                        {topTracks.map((track, index) => (
+                            <TrackCard key={index} index={index + 1} track={track} />
                         ))}
                     </div>
                 ) : (
                     <div className='flex flex-col gap-3'>
-                        {topArtists.map((artist, index) => (
-                            <ArtistList key={index} index={index} artist={artist} />
+                        {topTracks.map((track, index) => (
+                            <TrackList key={index} index={index} track={track} />
                         ))}
                     </div>
                 )}
-
             </CardBody>
         </Card>
     )

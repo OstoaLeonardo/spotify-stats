@@ -1,5 +1,5 @@
 import { Tab, Tabs } from '@nextui-org/react'
-import { TopSongs } from '../components/TopSongs'
+import { TopTracks } from '../components/TopTracks'
 import { TopArtists } from '../components/TopArtists'
 
 const Top = () => {
@@ -9,7 +9,7 @@ const Top = () => {
                 <div className='col-span-4'>
                     <Tabs aria-label='Options'>
                         <Tab key='photos' title='Songs'>
-                            <TopSongs />
+                            <TopTracks />
                         </Tab>
                         <Tab key='music' title='Artists'>
                             <TopArtists />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Header } from '../components/Header'
-import { TopSongs } from '../components/TopSongs'
+import { TopTracks } from '../components/TopTracks'
 import { TopArtists } from '../components/TopArtists'
 import { RecentlyPlayed } from '../components/RecentlyPlayed'
 import { CurrentlyPlaying } from '../components/CurrentlyPlaying'
@@ -21,7 +21,7 @@ const Home = () => {
                     <CurrentlyPlaying setSongFinished={setSongFinished} />
                 </div>
                 <div className='flex flex-col col-span-3 sm:col-span-4'>
-                    <TopSongs />
+                    <TopTracks />
                 </div>
                 <div className='flex flex-col col-span-3 sm:col-span-4'>
                     <TopArtists />
