@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { accessUrl } from '../api/authorize'
+import { useCurrentUser } from '../hooks/useCurrentUser'
 
 const menuItems = [
     { name: 'Profile', href: '/home' },
@@ -13,8 +14,14 @@ const menuItems = [
     { name: 'Log out', href: '/' },
 ]
 
-export function NavbarHome({ currentUser, signOut }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+export function NavbarHome() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { currentUser } = useCurrentUser()
+
+    const signOut = () => {
+        localStorage.clear()
+        window.location.pathname = '/'
+    }
 
     return (
         <Navbar maxWidth='xl' height={'6rem'} onMenuOpenChange={setIsMenuOpen}>

@@ -1,8 +1,11 @@
+import { useCurrentUser } from '../hooks/useCurrentUser'
+import { Avatar, Button, Card, CardHeader, Chip, Link } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare, faCircle } from '@fortawesome/free-solid-svg-icons'
-import { Avatar, Button, Card, CardHeader, Chip, Link } from '@nextui-org/react'
 
-export function Header({ currentUser }) {
+export function Header() {
+    const { currentUser } = useCurrentUser()
+
     return (
         <Card>
             <CardHeader className='justify-between py-7 px-6'>

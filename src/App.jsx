@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { useCurrentUser } from './hooks/useCurrentUser'
 import { NavbarHome } from './components/NavbarHome'
 import getCurrentUser from './api/currentUser'
 import Home from './pages/Home'
@@ -8,7 +9,7 @@ import Top from './pages/Top'
 import Stats from './pages/Stats'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState([])
+  const { setCurrentUser } = useCurrentUser()
 
   useEffect(() => {
     fetchGetCurrentUser()
@@ -23,20 +24,15 @@ function App() {
     }
   }
 
-  const signOut = () => {
-    localStorage.clear()
-    window.location.pathname = '/'
-  }
-
   return (
     <>
-      <NavbarHome signOut={signOut} currentUser={currentUser} />
+      <NavbarHome />
       <Routes>
-        <Route path='/' element={<Login signOut={signOut} />} />
-        <Route path='/home' element={<Home signOut={signOut} currentUser={currentUser} />} />
-        <Route path='/top' element={<Top signOut={signOut} />} />
-        <Route path='/stats' element={<Stats signOut={signOut} />} />
-        <Route path='*' element={<Login signOut={signOut} />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/top' element={<Top />} />
+        <Route path='/stats' element={<Stats />} />
+        <Route path='*' element={<Login />} />
       </Routes>
     </>
   )
