@@ -20,11 +20,10 @@ const formatTopArtists = (artist) => {
     
     const formattedArtists = artist.items.map((item) => {
         return {
+            id: item.id,
             name: item.name,
-            genres: item.genres,
-            popularity: item.popularity,
-            imageUrl: item.images[1].url,
-            artistUrl: item.external_urls.spotify,
+            image: item.images[1].url,
+            url: item.external_urls.spotify,
         };
     });
 

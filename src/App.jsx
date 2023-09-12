@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Top from './pages/Top'
 import Stats from './pages/Stats'
 import TrackDetails from './pages/TrackDetails'
+import ArtistDetails from './pages/ArtistDetails'
 
 function App() {
   const { setCurrentUser } = useCurrentUser()
@@ -35,6 +36,9 @@ function App() {
         <Route path='/stats' element={<Stats />} />
         <Route path='/track'>
           <Route path=':id' element={<TrackDetails />} />
+        </Route>
+        <Route path='/artist'>
+          <Route path=':id' element={<ArtistDetails />} />
         </Route>
         <Route path='*' element={<Login />} />
       </Routes>

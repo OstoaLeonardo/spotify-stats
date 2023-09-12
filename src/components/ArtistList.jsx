@@ -20,7 +20,7 @@ export function ArtistList({ index, artist }) {
                     height={50}
                     radius='sm'
                     alt={artist.name}
-                    src={artist.imageUrl}
+                    src={artist.image}
                     className='object-cover aspect-square z-0'
                 />
                 <p className='text-xs sm:text-lg font-bold drop-shadow line-clamp-1'>
@@ -31,7 +31,7 @@ export function ArtistList({ index, artist }) {
                 <Button
                     isIconOnly
                     as={Link}
-                    href={artist.artistUrl}
+                    href={artist.url}
                     target='_blank'
                     variant='light'
                 >
