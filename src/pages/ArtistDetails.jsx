@@ -74,7 +74,12 @@ const ArtistDetails = () => {
                         <p className='text-base text-foreground-500 font-semibold'>Popularity (0-100)</p>
                     </div>
                     <div className='flex flex-col items-center col-span-2'>
-                        <p className='text-lg lg:text-2xl xl:text-3xl font-bold capitalize'>{artist.genres && artist.genres.slice(0, 2).join(', ')}</p>
+                        <p className='text-lg lg:text-2xl xl:text-3xl font-bold capitalize'>
+                            {artist.genres && artist.genres.length > 0
+                                ? artist.genres.slice(0, 2).join(', ')
+                                : 'No genres'
+                            }
+                        </p>
                         <p className='text-base text-foreground-500 font-semibold'>Genres</p>
                     </div>
                 </grid>
