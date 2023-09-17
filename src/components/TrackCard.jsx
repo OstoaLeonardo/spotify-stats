@@ -17,20 +17,6 @@ export function TrackCard({ index, track }) {
                 shadow='none'
                 className='col-span-1'
             >
-                <CardHeader className='absolute justify-between ml-1 py-2 pr-2'>
-                    <span className='text-lg font-bold drop-shadow'>
-                        {index}.
-                    </span>
-                    <Button
-                        isIconOnly
-                        onClick={() => playPreview(track.previewUrl)}
-                        variant='light'
-                        showAnchorIcon
-                        className={track.previewUrl === null ? 'invisible' : ''}
-                    >
-                        <FontAwesomeIcon icon={faPlay} />
-                    </Button>
-                </CardHeader>
                 <CardBody className='p-0'>
                     <Image
                         isZoomed
@@ -38,18 +24,21 @@ export function TrackCard({ index, track }) {
                         height={400}
                         alt={track.title}
                         src={track.albumImageUrl}
-                        className='object-cover aspect-square z-0'
+                        className='object-cover aspect-square'
                     />
-                    <div className='absolute w-full h-full bg-gradient-to-t from-transparent from-80% via-black/30 to-black/50' />
-                    <div className='absolute w-full h-full bg-gradient-to-b from-transparent from-60% via-black/30 to-black/50' />
                 </CardBody>
-                <CardFooter className='absolute w-[calc(100%_-_8px)] flex flex-col items-start bottom-1 ml-1 py-2 z-10'>
-                    <span className='text-xs sm:text-sm font-semibold drop-shadow line-clamp-1'>
-                        {track.artist}
+                <CardFooter className='w-full flex items-start gap-3'>
+                    <span className='text-xl font-bold text-guppie-green'>
+                        {index}.
                     </span>
-                    <span className='text-sm sm:text-lg font-semibold drop-shadow line-clamp-1'>
-                        {track.title}
-                    </span>
+                    <div className='w-full flex flex-col'>
+                        <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
+                            {track.artist}
+                        </span>
+                        <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
+                            {track.title}
+                        </span>
+                    </div>
                 </CardFooter>
             </Card>
         </Link>

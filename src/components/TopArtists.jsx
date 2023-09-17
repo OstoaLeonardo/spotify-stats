@@ -99,7 +99,7 @@ export function TopArtists() {
                 ) : (
                     <div className='flex flex-col gap-3'>
                         {topArtists.map((artist, index) => (
-                            <ArtistList key={index} index={index} artist={artist} />
+                            <ArtistList key={index} index={index + 1} artist={artist} />
                         ))}
                     </div>
                 )}

@@ -105,7 +105,7 @@ export function TopTracks() {
                 ) : (
                     <div className='flex flex-col gap-3'>
                         {topTracks.map((track, index) => (
-                            <TrackList key={index} index={index} track={track} />
+                            <TrackList key={index} index={index + 1} track={track} />
                         ))}
                     </div>
                 )}
