@@ -37,10 +37,10 @@ export function TopTracks() {
     }
 
     return (
-        <Card className='min-w-full p-4'>
+        <Card className='shadow-none p-4'>
             <CardHeader className='flex flex-col sm:flex-row justify-between gap-3'>
                 <h3 className='w-full text-2xl sm:text-4xl font-bold'>
-                    Top <span className='text-green-400'>Songs</span>
+                    Top <span className='text-guppie-green'>Songs</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
                     <Button

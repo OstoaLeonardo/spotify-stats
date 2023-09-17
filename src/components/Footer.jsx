@@ -8,10 +8,10 @@ export function Footer() {
         <Card className='border-none'>
             <CardBody className='items-center p-10 sm:p-16'>
                 <p className='text-2xl sm:text-6xl font-bold'>
-                    Log in with <span className='text-green-400'>Spotify</span>
+                    Log in with <span className='text-guppie-green'>Spotify</span>
                 </p>
                 <p className='text-2xl sm:text-6xl font-bold'>
-                    and get your <span className='text-green-400'>Music Stats</span>
+                    and get your <span className='text-guppie-green'>Music Stats</span>
                 </p>
                 <p className='text-sm sm:text-lg text-foreground/80 mt-5'>
                     Are you ready to get your music stats?

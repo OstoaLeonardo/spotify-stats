@@ -38,7 +38,7 @@ const TrackDetails = () => {
 
     return (
         <main className='min-h-screen flex flex-col items-center'>
-            <header className='w-full flex items-center justify-center bg-zinc-900'>
+            <header className='w-full flex items-center justify-center bg-eerie-black'>
                 <div className='w-full flex flex-col sm:flex-row items-center max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-12 sm:py-16 gap-8'>
                     <Image
                         isZoomed
@@ -52,14 +52,18 @@ const TrackDetails = () => {
                         <h1 className='text-3xl sm:text-4xl font-bold line-clamp-1'>{track.name}</h1>
                         <div className='flex items-center'>
                             {track.artists &&
-                                track.artists.map((artist, index) => (
-                                    <React.Fragment key={artist.id}>
-                                        <span className='text-lg text-foreground-500 font-semibold'>{artist.name}</span>
-                                        {index < track.artists.length - 1 && (
-                                            <span className='text-lg text-foreground-500 font-semibold mr-1'>,</span>
-                                        )}
-                                    </React.Fragment>
-                                ))
+                                <span className='text-center md:text-left'>
+                                    {track.artists.map((artist, index) => (
+                                        <span key={index} className='text-base text-foreground-500 font-semibold'>
+                                            <a>
+                                                {artist.name}
+                                            </a>
+                                            {index < track.artists.length - 1 && (
+                                                ', '
+                                            )}
+                                        </span>
+                                    ))}
+                                </span>
                             }
                         </div>
                         <Button
@@ -112,32 +116,32 @@ const TrackDetails = () => {
                             />
                         ))}
                         <div className='grid grid-cols-2 sm:grid-cols-3 col-span-full gap-4 mt-8'>
-                            <div className='flex flex-col col-span-1 bg-neutral-900 rounded-2xl py-5 gap-1'>
-                                <span className='text-4xl text-green-500 font-bold text-center'>
+                            <div className='flex flex-col col-span-1 bg-eerie-black rounded-2xl py-5 gap-1'>
+                                <span className='text-4xl text-guppie-green font-bold text-center'>
                                     {Math.round(features.loudness * 10) / 10}
                                 </span>
                                 <p className='text-base text-foreground-500 font-semibold text-center'>Loudness</p>
                             </div>
-                            <div className='flex flex-col col-span-1 bg-neutral-900 rounded-2xl py-5 gap-1'>
-                                <span className='text-4xl text-green-500 font-bold text-center'>
+                            <div className='flex flex-col col-span-1 bg-eerie-black rounded-2xl py-5 gap-1'>
+                                <span className='text-4xl text-guppie-green font-bold text-center'>
                                     {features.key === 0 ? 'C' : features.key === 1 ? 'C#' : features.key === 2 ? 'D' : features.key === 3 ? 'D#' : features.key === 4 ? 'E' : features.key === 5 ? 'F' : features.key === 6 ? 'F#' : features.key === 7 ? 'G' : features.key === 8 ? 'G#' : features.key === 9 ? 'A' : features.key === 10 ? 'A#' : features.key === 11 ? 'B' : ''}
                                 </span>
                                 <p className='text-base text-foreground-500 font-semibold text-center'>Key</p>
                             </div>
-                            <div className='flex flex-col col-span-1 bg-neutral-900 rounded-2xl py-5 gap-1'>
-                                <span className='text-4xl text-green-500 font-bold text-center'>
+                            <div className='flex flex-col col-span-1 bg-eerie-black rounded-2xl py-5 gap-1'>
+                                <span className='text-4xl text-guppie-green font-bold text-center'>
                                     {features.mode === 1 ? 'Major' : 'Minor'}
                                 </span>
                                 <p className='text-base text-foreground-500 font-semibold text-center'>Mode</p>
                             </div>
-                            <div className='flex flex-col col-span-1 bg-neutral-900 rounded-2xl py-5 gap-1'>
-                                <span className='text-4xl text-green-500 font-bold text-center stacked-fractions'>
+                            <div className='flex flex-col col-span-1 bg-eerie-black rounded-2xl py-5 gap-1'>
+                                <span className='text-4xl text-guppie-green font-bold text-center stacked-fractions'>
                                     {features.time}/4
                                 </span>
                                 <p className='text-base text-foreground-500 font-semibold text-center'>Time signature</p>
                             </div>
-                            <div className='flex flex-col col-span-1 bg-neutral-900 rounded-2xl py-5 gap-1'>
-                                <span className='text-4xl text-green-500 font-bold text-center'>
+                            <div className='flex flex-col col-span-1 bg-eerie-black rounded-2xl py-5 gap-1'>
+                                <span className='text-4xl text-guppie-green font-bold text-center'>
                                     {Math.round(features.tempo * 10) / 10}
                                 </span>
                                 <p className='text-base text-foreground-500 font-semibold text-center'>BPM</p>

@@ -36,7 +36,7 @@ const ArtistDetails = () => {
 
     return (
         <main className='min-h-screen flex flex-col items-center'>
-            <header className='w-full flex items-center justify-center bg-zinc-900'>
+            <header className='w-full flex items-center justify-center bg-eerie-black'>
                 <div className='w-full flex flex-col sm:flex-row items-center max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-12 sm:py-16 gap-8'>
                     <Image
                         isZoomed

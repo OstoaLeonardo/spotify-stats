@@ -66,10 +66,10 @@ export function RecentlyTracks() {
     }
 
     return (
-        <Card className='min-w-full p-4'>
+        <Card className='shadow-none p-4'>
             <CardHeader className='flex flex-col sm:flex-row justify-between gap-3'>
                 <h3 className='w-full text-2xl sm:text-4xl font-bold'>
-                    Recently <span className='text-green-400'>Tracks</span>
+                    Recently <span className='text-guppie-green'>Tracks</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
                     <Button

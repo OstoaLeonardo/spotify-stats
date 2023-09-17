@@ -7,7 +7,7 @@ export function Header() {
     const { currentUser } = useCurrentUser()
 
     return (
-        <Card>
+        <Card className='shadow-none'>
             <CardHeader className='justify-between py-7 px-6'>
                 <div className='flex flex-row items-center gap-6'>
                     <Avatar
@@ -20,7 +20,7 @@ export function Header() {
                             <p className='text-2xl sm:text-5xl font-bold'>
                                 {currentUser ? (
                                     <span>
-                                        Welcome, <span className='text-green-400'>{currentUser.name}</span>
+                                        Welcome, <span className='text-guppie-green'>{currentUser.name}</span>
                                     </span>
                                 ) : (
                                     'Log in to see your stats'

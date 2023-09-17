@@ -1,7 +1,7 @@
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 const clientId = 'b98830dfd88f4b03b153bbe48623e883';
 const responseType = 'code';
-const redirectUri = 'https://getspotifystats.vercel.app/';
+const redirectUri = 'http://localhost:5173/';
 const scopes = [
     'user-read-email',
     'user-read-private',

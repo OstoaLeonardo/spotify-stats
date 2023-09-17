@@ -8,13 +8,13 @@ export function Landing() {
         <Card className='w-fit border-none'>
             <CardBody className='p-10'>
                 <h3 className='text-4xl sm:text-6xl font-bold'>
-                    Your <span className='text-green-400'>Music</span>
+                    Your <span className='text-guppie-green'>Music</span>
                 </h3>
                 <h2 className='text-4xl sm:text-6xl font-bold'>
-                    Your <span className='text-green-400'>Spotify</span>
+                    Your <span className='text-guppie-green'>Spotify</span>
                 </h2>
                 <h1 className='text-4xl sm:text-6xl font-bold'>
-                    Your <span className='text-green-400'>Stats</span>
+                    Your <span className='text-guppie-green'>Stats</span>
                 </h1>
                 <p className='text-sm sm:text-lg text-foreground/80 mt-5'>
                     Get your top artists and tracks from Spotify

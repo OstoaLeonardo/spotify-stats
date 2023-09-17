@@ -31,10 +31,10 @@ export function TopArtists() {
     }
 
     return (
-        <Card className='p-4'>
+        <Card className='shadow-none p-4'>
             <CardHeader className='flex flex-col sm:flex-row justify-between gap-3'>
                 <h3 className='w-full text-2xl sm:text-4xl font-bold'>
-                    Top <span className='text-green-400'>Artists</span>
+                    Top <span className='text-guppie-green'>Artists</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
                     <Button

@@ -1,5 +1,4 @@
 import { Chart, LineElement, PointElement, Tooltip, Legend, RadialLinearScale } from 'chart.js'
-import { useEffect, useState } from 'react'
 import { Radar } from 'react-chartjs-2'
 
 Chart.register(LineElement, PointElement, Tooltip, Legend, RadialLinearScale)
@@ -48,7 +47,7 @@ const FeaturesChart = ({ features }) => {
         datasets: [
             {
                 data: features,
-                borderColor: 'rgba(24, 201, 100, 1)',
+                borderColor: 'rgba(0, 240, 126, 1)',
             }
         ],
     }

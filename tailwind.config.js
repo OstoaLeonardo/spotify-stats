@@ -12,7 +12,13 @@ export default {
       'body': ['DM Sans', 'sans-serif'],
       'sans': ['DM Sans', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'guppie-green': '#00f07e',
+        'chinese-black': '#111112',
+        'eerie-black': '#18181b',
+      }
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

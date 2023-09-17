@@ -24,7 +24,7 @@ export function NavbarHome() {
     }
 
     return (
-        <Navbar maxWidth='xl' height={'6rem'} onMenuOpenChange={setIsMenuOpen}>
+        <Navbar maxWidth='xl' height={'6rem'} className={'bg-chinese-black'} onMenuOpenChange={setIsMenuOpen}>
             <NavbarContent>
                 {currentUser &&
                     <NavbarMenuToggle
@@ -35,7 +35,7 @@ export function NavbarHome() {
                 <NavbarBrand>
                     <FontAwesomeIcon
                         icon={faSpotify}
-                        className='w-auto h-5 sm:h-7 text-green-400 mr-3' />
+                        className='w-auto h-5 sm:h-7 text-guppie-green mr-3' />
                     <p className='text-xl font-semibold text-inherit'>Your Spotify Stats</p>
                 </NavbarBrand>
             </NavbarContent>
@@ -76,7 +76,7 @@ export function NavbarHome() {
                         </DropdownTrigger>
                         <DropdownMenu aria-label='Profile Actions' variant='flat'>
                             <DropdownItem key='profile' className='h-14 gap-2'>
-                                <p className='text-green-400 font-semibold'>Logged in as</p>
+                                <p className='text-guppie-green font-semibold'>Logged in as</p>
                                 <p className='font-semibold'>{currentUser.email}</p>
                             </DropdownItem>
                             <DropdownItem key='logout' color='danger' startContent={<FontAwesomeIcon icon={faSignOut} />} onClick={signOut}>

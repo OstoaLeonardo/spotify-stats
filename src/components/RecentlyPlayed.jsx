@@ -36,7 +36,7 @@ export function RecentlyPlayed({ songFinished }) {
     }
 
     return (
-        <Card>
+        <Card className='shadow-none'>
             <CardBody>
                 <div className='grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center'>
                     <div className='flex justify-center col-span-6 md:col-span-4 aspect-square'>
