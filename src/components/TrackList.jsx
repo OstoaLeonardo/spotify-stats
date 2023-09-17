@@ -30,8 +30,8 @@ export function TrackList({ index, track }) {
                 }
             }}
         >
-            <CardHeader className='w-14 flex items-center justify-center mr-3'>
-                <span className={`text-lg font-bold ${isHovered.includes(index) ? 'hidden' : ''}`}>
+            <CardHeader className='w-14 flex items-center justify-center mr-0 sm:mr-3'>
+                <span className={`text-sm sm:text-lg font-bold ${isHovered.includes(index) ? 'hidden' : ''}`}>
                     {index}.
                 </span>
                 {track.previewUrl !== null && (
@@ -66,7 +66,7 @@ export function TrackList({ index, track }) {
                         </span>
                     </div>
                 </CardBody>
-                <CardFooter className='absolute w-fit h-full right-0'>
+                <CardFooter className='hidden sm:flex absolute w-fit h-full right-0'>
                     <Button
                         isIconOnly
                         as={NextLink}

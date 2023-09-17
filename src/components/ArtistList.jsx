@@ -10,8 +10,8 @@ export function ArtistList({ index, artist }) {
                 radius='lg'
                 className='flex flex-row shadow-none border-none'
             >
-                <CardHeader className='w-14 flex items-center justify-center mr-3'>
-                    <span className='text-lg font-bold drop-shadow mr-3'>
+                <CardHeader className='w-14 flex items-center justify-center mr-0 sm:mr-3'>
+                    <span className='text-sm sm:text-lg font-bold drop-shadow mr-3'>
                         {index}.
                     </span>
                 </CardHeader>
@@ -29,7 +29,7 @@ export function ArtistList({ index, artist }) {
                         {artist.name}
                     </p>
                 </CardBody>
-                <CardFooter className='w-fit h-full absolute right-0'>
+                <CardFooter className='hidden sm:flex absolute w-fit h-full right-0'>
                     <Button
                         isIconOnly
                         as={NextLink}
