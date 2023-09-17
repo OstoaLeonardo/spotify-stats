@@ -5,17 +5,17 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 export function ArtistList({ index, artist }) {
     return (
-        <Link to={'/artist/' + artist.id}>
-            <Card
-                radius='lg'
-                className='flex flex-row shadow-none border-none'
-            >
-                <CardHeader className='w-14 flex items-center justify-center mr-0 sm:mr-3'>
-                    <span className='text-sm sm:text-lg font-bold drop-shadow mr-3'>
-                        {index}.
-                    </span>
-                </CardHeader>
-                <CardBody className='flex flex-row items-center bg-black/20 rounded-lg gap-5'>
+        <Card
+            radius='lg'
+            className='flex flex-row shadow-none border-none'
+        >
+            <CardHeader className='hidden w-14 sm:flex items-center justify-center mr-3'>
+                <span className='text-sm sm:text-lg font-bold mr-3'>
+                    {index}.
+                </span>
+            </CardHeader>
+            <Link to={'/artist/' + artist.id} className='w-full flex bg-black/20 rounded-xl'>
+                <CardBody className='flex flex-row items-center gap-5'>
                     <Image
                         isZoomed
                         width={50}
@@ -23,13 +23,13 @@ export function ArtistList({ index, artist }) {
                         radius='sm'
                         alt={artist.name}
                         src={artist.image}
-                        className='object-cover aspect-square z-0'
+                        className='w-auto h-auto object-cover aspect-square'
                     />
-                    <p className='text-xs sm:text-lg font-bold drop-shadow line-clamp-1'>
+                    <p className='text-xs sm:text-lg font-bold line-clamp-1'>
                         {artist.name}
                     </p>
                 </CardBody>
-                <CardFooter className='hidden sm:flex absolute w-fit h-full right-0'>
+                <CardFooter className='w-fit h-full'>
                     <Button
                         isIconOnly
                         as={NextLink}
@@ -40,7 +40,7 @@ export function ArtistList({ index, artist }) {
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </Button>
                 </CardFooter>
-            </Card>
-        </Link>
+            </Link>
+        </Card>
     )
 }

@@ -30,8 +30,8 @@ export function TrackList({ index, track }) {
                 }
             }}
         >
-            <CardHeader className='w-14 flex items-center justify-center mr-0 sm:mr-3'>
-                <span className={`text-sm sm:text-lg font-bold ${isHovered.includes(index) ? 'hidden' : ''}`}>
+            <CardHeader className='hidden w-14 sm:flex items-center justify-center mr-3'>
+                <span className={`text-lg font-bold ${isHovered.includes(index) ? 'hidden' : ''}`}>
                     {index}.
                 </span>
                 {track.previewUrl !== null && (
@@ -46,8 +46,8 @@ export function TrackList({ index, track }) {
                     </Button>
                 )}
             </CardHeader>
-            <Link to={'/track/' + track.id} className='w-full flex'>
-                <CardBody className='flex flex-row items-center bg-black/20 rounded-lg gap-5'>
+            <Link to={'/track/' + track.id} className='w-full flex bg-black/20 rounded-xl'>
+                <CardBody className='flex flex-row items-center gap-5'>
                     <Image
                         isZoomed
                         width={50}
@@ -55,7 +55,7 @@ export function TrackList({ index, track }) {
                         radius='sm'
                         alt={track.title}
                         src={track.albumImageUrl}
-                        className='object-cover aspect-square z-0'
+                        className='w-auto h-auto object-cover aspect-square'
                     />
                     <div className='flex flex-col'>
                         <span className='text-xs sm:text-lg font-semibold line-clamp-1'>
@@ -66,7 +66,7 @@ export function TrackList({ index, track }) {
                         </span>
                     </div>
                 </CardBody>
-                <CardFooter className='hidden sm:flex absolute w-fit h-full right-0'>
+                <CardFooter className='w-fit h-full'>
                     <Button
                         isIconOnly
                         as={NextLink}
