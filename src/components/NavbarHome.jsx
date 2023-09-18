@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
@@ -10,11 +10,12 @@ import { useCurrentUser } from '../hooks/useCurrentUser'
 const menuItems = [
     { name: 'Profile', href: '/home' },
     { name: 'Top', href: '/top' },
-    { name: 'Recently played', href: '/stats' },
+    { name: 'Recently played', href: '/recently' },
     { name: 'Log out', href: '/' },
 ]
 
 export function NavbarHome() {
+    const location = useLocation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { currentUser } = useCurrentUser()
 
@@ -22,6 +23,32 @@ export function NavbarHome() {
         localStorage.clear()
         window.location.pathname = '/'
     }
+
+    const navbarItems = menuItems.slice(0, 3).map((item, index) => (
+        <NavbarItem
+            key={index}
+            className={`font-semibold ${location.pathname === item.href ? 'text-guppie-green' : 'text-foreground-500'}`}
+        >
+            <Link to={item.href}>
+                {item.name}
+            </Link>
+        </NavbarItem>
+    ))
+
+    const dropdownItems = menuItems.map((item, index) => (
+        <NavbarMenuItem
+            key={index}
+            className={
+                'font-semibold ' +
+                (location.pathname === item.href ? 'text-guppie-green' : 'text-foreground-500') +
+                (index === menuItems.length - 1 ? ' text-danger' : '')
+            }
+        >
+            <Link to={item.href}>
+                {item.name}
+            </Link>
+        </NavbarMenuItem>
+    ))
 
     return (
         <Navbar maxWidth='xl' height={'6rem'} className={'bg-chinese-black'} onMenuOpenChange={setIsMenuOpen}>
@@ -42,21 +69,7 @@ export function NavbarHome() {
 
             {currentUser &&
                 <NavbarContent className='hidden sm:flex gap-4' justify='center'>
-                    <NavbarItem isActive>
-                        <Link color='success' to='/home'>
-                            Profile
-                        </Link>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <Link color='foreground' to='/top'>
-                            Top
-                        </Link>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <Link color='foreground' to='/stats'>
-                            Recently played
-                        </Link>
-                    </NavbarItem>
+                    {navbarItems}
                 </NavbarContent>
             }
 
@@ -101,24 +114,7 @@ export function NavbarHome() {
 
             {currentUser &&
                 <NavbarMenu>
-                    {menuItems.map((item, index) => (
-                        <NavbarMenuItem key={index}>
-                            <Link
-                                color={
-                                    index === 0
-                                        ? 'success'
-                                        : index === menuItems.length - 1
-                                            ? 'danger'
-                                            : 'foreground'
-                                }
-                                className='w-full font-semibold'
-                                to={item.href}
-                                size='lg'
-                            >
-                                {item.name}
-                            </Link>
-                        </NavbarMenuItem>
-                    ))}
+                    {dropdownItems}
                 </NavbarMenu>
             }
         </Navbar>

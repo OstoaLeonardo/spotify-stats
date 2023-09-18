@@ -6,7 +6,7 @@ import getCurrentUser from './api/currentUser'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Top from './pages/Top'
-import Stats from './pages/Stats'
+import Recently from './pages/Recently'
 import TrackDetails from './pages/TrackDetails'
 import ArtistDetails from './pages/ArtistDetails'
 
@@ -33,7 +33,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/home' element={<Home />} />
         <Route path='/top' element={<Top />} />
-        <Route path='/stats' element={<Stats />} />
+        <Route path='/recently' element={<Recently />} />
         <Route path='/track'>
           <Route path=':id' element={<TrackDetails />} />
         </Route>
