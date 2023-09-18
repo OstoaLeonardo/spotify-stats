@@ -40,14 +40,14 @@ export function RecentlyPlayed({ songFinished }) {
             <CardBody>
                 <div className='grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center'>
                     <div className='flex justify-center col-span-6 md:col-span-4 aspect-square'>
-                        {recentlyPlayed.albumArt === undefined
+                        {recentlyPlayed.albumImageUrl === undefined
                             ? <CircularProgress color='success' />
                             : <Image
                                 isZoomed
                                 width='100%'
                                 height={200}
                                 alt={recentlyPlayed.name}
-                                src={recentlyPlayed.albumArt}
+                                src={recentlyPlayed.albumImageUrl}
                                 className='object-cover aspect-square'
                             />
                         }
@@ -64,8 +64,8 @@ export function RecentlyPlayed({ songFinished }) {
                                 >
                                     Recently played
                                 </Chip>
-                                <p className='text-large font-medium line-clamp-1 mt-2'>{recentlyPlayed.title}</p>
-                                <p className='text-small text-foreground/80 line-clamp-1'>{recentlyPlayed.artist}</p>
+                                <span className='text-large font-medium line-clamp-1 mt-2'>{recentlyPlayed.title}</span>
+                                <span className='text-small text-foreground/80 line-clamp-1'>{recentlyPlayed.artist}</span>
                             </div>
                             <Button
                                 isIconOnly
