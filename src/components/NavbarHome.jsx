@@ -43,6 +43,7 @@ export function NavbarHome() {
                 (location.pathname === item.href ? 'text-guppie-green' : 'text-foreground-500') +
                 (index === menuItems.length - 1 ? ' text-danger' : '')
             }
+            onClick={index === menuItems.length - 1 ? signOut : undefined}
         >
             <Link to={item.href}>
                 {item.name}
