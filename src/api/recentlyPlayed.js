@@ -20,10 +20,11 @@ const formatRecentlyPlayed = (song) => {
 
     const formattedSongs = song.items.map((item) => {
         return {
+            id: item.track.id,
             title: item.track.name,
             artist: item.track.artists.map((artist) => artist.name).join(", "),
             album: item.track.album.name,
-            albumArt: item.track.album.images[1].url,
+            albumImageUrl: item.track.album.images[1].url,
             durationMs: item.track.duration_ms,
             trackUrl: item.track.external_urls.spotify,
             previewUrl: item.track.preview_url,

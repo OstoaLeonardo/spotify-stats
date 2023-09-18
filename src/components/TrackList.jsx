@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, CardHeader, CardBody, CardFooter, Image, Button, Link as NextLink } from '@nextui-org/react'
+import { Card, CardHeader, CardBody, CardFooter, Image, Button, Link as NextLink, Chip } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare, faClock, faPlay } from '@fortawesome/free-solid-svg-icons'
 
-export function TrackList({ index, track }) {
+export function TrackList({ index, track, chip }) {
     const [isHovered, setIsHovered] = useState([])
 
     const playPreview = (previewUrl) => {
@@ -47,7 +47,7 @@ export function TrackList({ index, track }) {
                 )}
             </CardHeader>
             <Link to={'/track/' + track.id} className='w-full flex bg-black/20 rounded-xl'>
-                <CardBody className='flex flex-row items-center pr-0 gap-5'>
+                <CardBody className='flex flex-row grow items-center pr-0 gap-4'>
                     <Image
                         isZoomed
                         width={50}
@@ -57,7 +57,7 @@ export function TrackList({ index, track }) {
                         src={track.albumImageUrl}
                         className='w-auto h-auto object-cover aspect-square'
                     />
-                    <div className='w-full flex flex-col'>
+                    <div className='flex flex-col grow'>
                         <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
                             {track.title}
                         </span>
@@ -66,7 +66,17 @@ export function TrackList({ index, track }) {
                         </span>
                     </div>
                 </CardBody>
-                <CardFooter className='w-fit h-full pl-0'>
+                <CardFooter className='w-fit flex-none pl-0 gap-1'>
+                    {chip && (
+                        <Chip
+                            variant='flat'
+                            color='success'
+                            className='hidden sm:flex text-xs sm:text-sm pl-2'
+                            startContent={<FontAwesomeIcon icon={faClock} />}
+                        >
+                            {chip}
+                        </Chip>
+                    )}
                     <Button
                         isIconOnly
                         as={NextLink}

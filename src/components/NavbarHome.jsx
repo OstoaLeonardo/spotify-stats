@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from '@nextui-org/react'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
@@ -86,11 +86,11 @@ export function NavbarHome() {
                     </Dropdown>
                 ) : (
                     <Button
-                        as={Link}
-                        href={accessUrl}
                         size='lg'
+                        as={NextLink}
                         variant='flat'
                         color='success'
+                        href={accessUrl}
                         className='hidden sm:flex font-bold'
                         startContent={<FontAwesomeIcon className='w-5 h-5' icon={faSpotify} />}
                     >
