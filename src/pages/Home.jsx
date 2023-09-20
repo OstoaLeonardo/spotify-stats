@@ -4,6 +4,7 @@ import { TopTracks } from '../components/TopTracks'
 import { TopArtists } from '../components/TopArtists'
 import { RecentlyPlayed } from '../components/RecentlyPlayed'
 import { CurrentlyPlaying } from '../components/CurrentlyPlaying'
+import { TopTrack } from '../components/TopTrack'
 
 const Home = () => {
     const [songFinished, setSongFinished] = useState(false)
@@ -19,6 +20,9 @@ const Home = () => {
                 </div>
                 <div className='flex flex-col col-span-3 sm:col-span-2'>
                     <CurrentlyPlaying setSongFinished={setSongFinished} />
+                </div>
+                <div className='flex flex-col col-span-full'>
+                    <TopTrack />
                 </div>
                 <div className='flex flex-col col-span-3 sm:col-span-4'>
                     <TopTracks />
