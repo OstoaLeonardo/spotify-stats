@@ -8,6 +8,7 @@ import Top from './pages/Top'
 import Recently from './pages/Recently'
 import TrackDetails from './pages/TrackDetails'
 import ArtistDetails from './pages/ArtistDetails'
+import PlaylistDetails from './pages/PlaylistDetails'
 import getCurrentUser from './api/getCurrentUser'
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route path='/artist'>
           <Route path=':id' element={<ArtistDetails />} />
+        </Route>
+        <Route path='/playlist'>
+          <Route path=':id' element={<PlaylistDetails />} />
         </Route>
         <Route path='*' element={<Login />} />
       </Routes>
