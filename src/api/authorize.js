@@ -8,6 +8,8 @@ const scopes = [
     'user-read-recently-played',
     'user-read-currently-playing',
     'user-top-read',
+    'playlist-read-private',
+    'playlist-read-collaborative'
 ];
 
 export const accessUrl =
