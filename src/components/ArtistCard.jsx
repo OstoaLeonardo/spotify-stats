@@ -11,7 +11,7 @@ export function ArtistCard({ index, artist }) {
                 shadow='none'
                 className='col-span-1'
             >
-                <CardHeader className='absolute flex justify-end p-1 z-50'>
+                <CardHeader className='absolute flex justify-end p-1 z-20'>
                     <Button
                         isIconOnly
                         as={NextLink}
