@@ -1,13 +1,11 @@
 import fetchEndPoint from './fetchEndPoint.js'
 
-const playlistsEndPoint = 'https://api.spotify.com/v1/users/';
+const playlistsEndPoint = 'https://api.spotify.com/v1/me/playlists';
 
 const getPlaylists = async () => {
     try {
-        const user_id = localStorage.getItem('user_id');
         const access_token = localStorage.getItem('access_token');
-        const endPoint = playlistsEndPoint + user_id + '/playlists';
-        const playlists = await fetchEndPoint(access_token, endPoint);
+        const playlists = await fetchEndPoint(access_token, playlistsEndPoint);
         return formatPlaylists(playlists);
     } catch (error) {
         return null;

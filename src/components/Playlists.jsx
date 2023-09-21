@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import { PlaylistCard } from './PlaylistCard'
-import getPlaylists from '../api/getPlaylistById'
+import getUserPlaylists from '../api/getUserPlaylists'
 import '@splidejs/react-splide/css'
 
 export function Playlists() {
@@ -16,7 +16,7 @@ export function Playlists() {
 
     async function fetchPlaylists() {
         try {
-            const response = await getPlaylists()
+            const response = await getUserPlaylists()
             setPlaylists(response)
         } catch (error) {
             console.error('Error fetching top tracks:', error)
