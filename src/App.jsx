@@ -2,13 +2,13 @@ import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { useCurrentUser } from './hooks/useCurrentUser'
 import { NavbarHome } from './components/NavbarHome'
-import getCurrentUser from './api/currentUser'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Top from './pages/Top'
 import Recently from './pages/Recently'
 import TrackDetails from './pages/TrackDetails'
 import ArtistDetails from './pages/ArtistDetails'
+import getCurrentUser from './api/getCurrentUser'
 
 function App() {
   const { setCurrentUser } = useCurrentUser()

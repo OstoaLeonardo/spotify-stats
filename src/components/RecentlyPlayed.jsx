@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardBody, Image, Button, Progress, CircularProgress, Chip } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faHeart, faPlay } from '@fortawesome/free-solid-svg-icons'
-import getRecentlyPlayed from '../api/recentlyPlayed'
+import getRecentlyPlayed from '../api/getRecentlyPlayed'
 
 export function RecentlyPlayed({ songFinished }) {
     const [recentlyPlayed, setRecentlyPlayed] = useState([])

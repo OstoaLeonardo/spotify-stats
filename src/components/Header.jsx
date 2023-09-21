@@ -2,9 +2,14 @@ import { useCurrentUser } from '../hooks/useCurrentUser'
 import { Avatar, Button, Card, CardHeader, Chip, Link } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { useEffect } from 'react'
 
 export function Header() {
     const { currentUser } = useCurrentUser()
+
+    useEffect(() => {
+        localStorage.setItem('user_id', currentUser.id)
+    }, [currentUser])
 
     return (
         <Card className='shadow-none'>

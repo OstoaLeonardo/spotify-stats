@@ -4,7 +4,7 @@ import { useInView } from 'framer-motion'
 import { Card, CardHeader, CardBody, Image, Button, CircularProgress, Link as NextLink } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import getTopTracks from '../api/topTracks'
+import getTopTracks from '../api/getTopTracks'
 import confetti from 'canvas-confetti'
 
 export function TopTrack() {

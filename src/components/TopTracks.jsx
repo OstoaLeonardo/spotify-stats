@@ -5,7 +5,7 @@ import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
 import { TrackCard } from './TrackCard'
 import { TrackList } from './TrackList'
 import { ranges, limits } from '../constants/lists'
-import getTopTracks from '../api/topTracks'
+import getTopTracks from '../api/getTopTracks'
 
 export function TopTracks() {
     const [topTracks, setTopTracks] = useState([])

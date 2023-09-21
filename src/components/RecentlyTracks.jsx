@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, CardFooter, Image, Button, Select, SelectIt
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare, faClock, faList, faPlay, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
 import { limits } from '../constants/lists'
-import getRecentlyPlayed from '../api/recentlyPlayed'
+import getRecentlyPlayed from '../api/getRecentlyPlayed'
 import { TrackCard } from './TrackCard'
 import { TrackList } from './TrackList'
 

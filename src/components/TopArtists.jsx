@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, CardFooter, Image, Button, Select, SelectIt
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare, faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
 import { ranges, limits } from '../constants/lists'
-import getTopArtists from '../api/topArtists'
+import getTopArtists from '../api/getTopArtists'
 import { ArtistCard } from './ArtistCard'
 import { ArtistList } from './ArtistList'
 
