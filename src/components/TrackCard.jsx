@@ -1,21 +1,13 @@
 import { Link } from 'react-router-dom'
-import { Card, CardHeader, CardBody, CardFooter, Image, Button } from '@nextui-org/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 
 export function TrackCard({ index, track }) {
-    const playPreview = (previewUrl) => {
-        if (previewUrl === null) return
-        const audio = new Audio(previewUrl)
-        audio.play()
-    }
-
     return (
         <Link to={'/track/' + track.id}>
             <Card
                 radius='lg'
                 shadow='none'
-                className='col-span-1'
+                className='col-span-1 bg-transparent'
             >
                 <CardBody className='p-0'>
                     <Image
