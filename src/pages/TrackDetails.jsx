@@ -3,14 +3,17 @@ import { useParams } from 'react-router-dom'
 import { Button, Image, Link, Progress } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
+import { TrackCard } from '../components/TrackCard'
 import getTrackById from '../api/getTrackById'
 import getFeaturesById from '../api/getFeaturesById'
+import getRelatedTracksById from '../api/getRelatedTracksById'
 import FeaturesChart from '../components/FeaturesChart'
 
 const TrackDetails = () => {
     const { id } = useParams()
     const [track, setTrack] = useState([])
     const [features, setFeatures] = useState([])
+    const [relatedTracks, setRelatedTracks] = useState([])
 
     useEffect(() => {
         fetchData()
@@ -19,14 +22,16 @@ const TrackDetails = () => {
             top: 0,
             behavior: 'smooth'
         })
-    }, [])
+    }, [id])
 
     const fetchData = async () => {
         const track = await getTrackById(id)
         const features = await getFeaturesById(id)
-
+        const relatedTracks = await getRelatedTracksById(track.artists[0].id, id)
+        
         setTrack(track)
         setFeatures(features)
+        setRelatedTracks(relatedTracks)
     }
 
     const getTime = (ms) => {
@@ -81,7 +86,7 @@ const TrackDetails = () => {
                 </div>
             </header>
             <section className='w-full justify-between max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-16'>
-                <grid className='grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12'>
+                <div className='grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12'>
                     <div className='flex flex-col items-center'>
                         <p className='text-lg lg:text-2xl xl:text-3xl font-bold'>{track.popularity}</p>
                         <p className='text-base text-foreground-500 font-semibold'>Popularity (0-100)</p>
@@ -98,7 +103,7 @@ const TrackDetails = () => {
                         <p className='text-lg lg:text-2xl xl:text-3xl font-bold'>{track.explicit ? 'Yes' : 'No'}</p>
                         <p className='text-base text-foreground-500 font-semibold'>Explicit</p>
                     </div>
-                </grid>
+                </div>
             </section>
             <section className='w-full flex flex-col max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-16 gap-8'>
                 <h2 className='text-3xl font-bold'>Audio features</h2>
@@ -151,6 +156,14 @@ const TrackDetails = () => {
                     <div className='flex flex-col items-center col-span-full md:col-span-1'>
                         <FeaturesChart features={Object.values(features).slice(0, 2).concat(Object.values(features).slice(3, 8))} />
                     </div>
+                </div>
+            </section>
+            <section className='w-full flex flex-col max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-16 gap-8'>
+                <h2 className='text-3xl font-bold'>Recommendations</h2>
+                <div className='grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4'>
+                    {relatedTracks.map((track, index) => (
+                        <TrackCard key={track.id} index={index + 1} track={track} />
+                    ))}
                 </div>
             </section>
         </main>

@@ -18,8 +18,6 @@ const formatTrack = (track) => {
         return null;
     }
 
-    console.log(track);
-
     const { id, name, album, artists, duration_ms, external_urls, popularity, preview_url } = track;
 
     return {
