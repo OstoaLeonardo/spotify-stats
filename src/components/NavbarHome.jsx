@@ -65,7 +65,7 @@ export function NavbarHome() {
                     <FontAwesomeIcon
                         icon={faSpotify}
                         className='w-auto h-5 sm:h-7 text-guppie-green mr-3' />
-                    <p className='text-xl font-semibold text-inherit'>Your Spotify Stats</p>
+                    <p className='hidden sm:flex text-xl font-semibold text-inherit'>Your Spotify Stats</p>
                 </NavbarBrand>
             </NavbarContent>
 
@@ -83,12 +83,12 @@ export function NavbarHome() {
                             <DropdownTrigger>
                                 <Avatar
                                     isBordered
-                                    as='button'
-                                    className='transition-transform'
-                                    color='success'
-                                    name={currentUser.display_name}
                                     size='sm'
+                                    as='button'
+                                    color='success'
                                     src={currentUser.image}
+                                    name={currentUser.display_name}
+                                    className='aspect-square transition-transform'
                                 />
                             </DropdownTrigger>
                             <DropdownMenu aria-label='Profile Actions' variant='flat'>

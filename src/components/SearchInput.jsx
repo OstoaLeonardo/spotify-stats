@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Input } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import getSearched from '../api/getSearched'
 
 export function SearchInput() {
     const [value, setValue] = useState('')
@@ -33,6 +32,7 @@ export function SearchInput() {
             color='success'
             variant='bordered'
             placeholder='Search'
+            className='flex-1'
             startContent={<FontAwesomeIcon className='w-3 h-3 pl-2' icon={faSearch} />}
             value={value}
             onValueChange={setValue}
