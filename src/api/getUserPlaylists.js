@@ -21,7 +21,7 @@ const formatPlaylists = (playlists) => {
 
     const formattedPlaylists = items.map((playlist) => {
         const { id, name, images, collaborative } = playlist;
-        const { url } = images[0];
+        const { url } = images[1] || images[0];
         return {
             id,
             title: name,

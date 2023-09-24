@@ -9,6 +9,7 @@ import Recently from './pages/Recently'
 import TrackDetails from './pages/TrackDetails'
 import ArtistDetails from './pages/ArtistDetails'
 import PlaylistDetails from './pages/PlaylistDetails'
+import SearchDetails from './pages/SearchDetails'
 import getCurrentUser from './api/getCurrentUser'
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path='/playlist'>
           <Route path=':id' element={<PlaylistDetails />} />
+        </Route>
+        <Route paath='/search'>
+          <Route path=':query' element={<SearchDetails />} />
         </Route>
         <Route path='*' element={<Login />} />
       </Routes>

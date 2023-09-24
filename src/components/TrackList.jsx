@@ -30,22 +30,24 @@ export function TrackList({ index, track, chip }) {
                 }
             }}
         >
-            <CardHeader className='hidden w-14 sm:flex items-center justify-center mr-3'>
-                <span className={`text-lg font-bold ${isHovered.includes(index) ? 'hidden' : ''}`}>
-                    {index}.
-                </span>
-                {track.previewUrl !== null && (
-                    <Button
-                        isIconOnly
-                        onClick={() => playPreview(track.previewUrl)}
-                        variant='light'
-                        showAnchorIcon
-                        className={`${isHovered.includes(index) ? '' : 'hidden'}`}
-                    >
-                        <FontAwesomeIcon icon={faPlay} />
-                    </Button>
-                )}
-            </CardHeader>
+            {index && (
+                <CardHeader className='hidden w-14 sm:flex items-center justify-center mr-3'>
+                    <span className={`text-lg font-bold ${isHovered.includes(index) ? 'hidden' : ''}`}>
+                        {index}.
+                    </span>
+                    {track.previewUrl !== null && (
+                        <Button
+                            isIconOnly
+                            onClick={() => playPreview(track.previewUrl)}
+                            variant='light'
+                            showAnchorIcon
+                            className={`${isHovered.includes(index) ? '' : 'hidden'}`}
+                        >
+                            <FontAwesomeIcon icon={faPlay} />
+                        </Button>
+                    )}
+                </CardHeader>
+            )}
             <Link to={'/track/' + track.id} className='w-full flex bg-black/20 rounded-xl'>
                 <CardBody className='flex flex-row grow items-center pr-0 gap-4'>
                     <Image

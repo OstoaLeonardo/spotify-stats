@@ -14,6 +14,7 @@ export function Header() {
                         isBordered
                         size='lg'
                         color='success'
+                        showFallback
                         src={currentUser.image} />
                     <div className='flex flex-col gap-1'>
                         <div className='flex flex-row items-center gap-3'>

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink } from '@nextui-org/react'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink, Input } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
-import { faSignOut } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { accessUrl } from '../api/authorize'
 import { useCurrentUser } from '../hooks/useCurrentUser'
+import { SearchInput } from './SearchInput'
 
 const menuItems = [
     { name: 'Profile', href: '/home' },
@@ -76,28 +77,31 @@ export function NavbarHome() {
 
             <NavbarContent as='div' justify='end'>
                 {currentUser ? (
-                    <Dropdown placement='bottom-end'>
-                        <DropdownTrigger>
-                            <Avatar
-                                isBordered
-                                as='button'
-                                className='transition-transform'
-                                color='success'
-                                name={currentUser.display_name}
-                                size='sm'
-                                src={currentUser.image}
-                            />
-                        </DropdownTrigger>
-                        <DropdownMenu aria-label='Profile Actions' variant='flat'>
-                            <DropdownItem key='profile' className='h-14 gap-2'>
-                                <p className='text-guppie-green font-semibold'>Logged in as</p>
-                                <p className='font-semibold'>{currentUser.email}</p>
-                            </DropdownItem>
-                            <DropdownItem key='logout' color='danger' startContent={<FontAwesomeIcon icon={faSignOut} />} onClick={signOut}>
-                                Log Out
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
+                    <NavbarContent justify='end'>
+                        <SearchInput />
+                        <Dropdown placement='bottom-end'>
+                            <DropdownTrigger>
+                                <Avatar
+                                    isBordered
+                                    as='button'
+                                    className='transition-transform'
+                                    color='success'
+                                    name={currentUser.display_name}
+                                    size='sm'
+                                    src={currentUser.image}
+                                />
+                            </DropdownTrigger>
+                            <DropdownMenu aria-label='Profile Actions' variant='flat'>
+                                <DropdownItem key='profile' className='h-14 gap-2'>
+                                    <p className='text-guppie-green font-semibold'>Logged in as</p>
+                                    <p className='font-semibold'>{currentUser.email}</p>
+                                </DropdownItem>
+                                <DropdownItem key='logout' color='danger' startContent={<FontAwesomeIcon icon={faSignOut} />} onClick={signOut}>
+                                    Log Out
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </NavbarContent>
                 ) : (
                     <Button
                         size='lg'

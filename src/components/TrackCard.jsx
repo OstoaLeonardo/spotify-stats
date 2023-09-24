@@ -20,9 +20,11 @@ export function TrackCard({ index, track }) {
                     />
                 </CardBody>
                 <CardFooter className='w-full flex items-start gap-3'>
-                    <span className='text-xl font-bold text-guppie-green'>
-                        {index}.
-                    </span>
+                    {index && (
+                        <span className='text-xl font-bold text-guppie-green'>
+                            {index}.
+                        </span>
+                    )}
                     <div className='w-full flex flex-col'>
                         <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
                             {track.artist}

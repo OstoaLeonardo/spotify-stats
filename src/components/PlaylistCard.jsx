@@ -7,7 +7,7 @@ export function PlaylistCard({ index, playlist }) {
             <Card
                 radius='lg'
                 shadow='none'
-                className='col-span-1'
+                className='col-span-1 bg-transparent'
             >
                 <CardBody className='p-0'>
                     <Image
@@ -24,9 +24,11 @@ export function PlaylistCard({ index, playlist }) {
                         <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
                             {playlist.title}
                         </span>
-                        <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
-                            {playlist.isPublic === true ? 'Public' : 'Private'}
-                        </span>
+                        {playlist.description && (
+                            <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
+                                {playlist.isPublic === true ? 'Public' : 'Private'}
+                            </span>
+                        )}
                     </div>
                 </CardFooter>
             </Card>
