@@ -68,7 +68,7 @@ const ArtistDetails = () => {
                 </div>
             </header>
             <section className='w-full justify-between max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-16'>
-                <grid className='grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12'>
+                <div className='grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12'>
                     <div className='flex flex-col items-center col-span-2'>
                         <p className='text-lg lg:text-2xl xl:text-3xl font-bold'>{artist.popularity}</p>
                         <p className='text-base text-foreground-500 font-semibold'>Popularity (0-100)</p>
@@ -82,7 +82,7 @@ const ArtistDetails = () => {
                         </p>
                         <p className='text-base text-foreground-500 font-semibold'>Genres</p>
                     </div>
-                </grid>
+                </div>
             </section>
             <section className='w-full flex flex-col max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl py-16 gap-8'>
                 <h2 className='text-3xl font-bold'>Top tracks</h2>

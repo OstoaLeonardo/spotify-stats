@@ -6,24 +6,27 @@ const getTopArtists = async (time_range = 'long_term', limit = '5') => {
     try {
         const access_token = localStorage.getItem('access_token');
         const endPoint = `${topArtistsEndPoint}?time_range=${time_range}&limit=${limit}`;
-        const artist = await fetchEndPoint(access_token, endPoint);
-        return formatTopArtists(artist);
+        const artists = await fetchEndPoint(access_token, endPoint);
+        return formatTopArtists(artists);
     } catch (error) {
         return null;
     }
 };
 
-const formatTopArtists = (artist) => {
-    if (!artist) {
+const formatTopArtists = (artists) => {
+    if (!artists) {
         return null;
     }
+
+    const { items } = artists;
     
-    const formattedArtists = artist.items.map((item) => {
+    const formattedArtists = items.map((artist) => {
         return {
-            id: item.id,
-            name: item.name,
-            image: item.images[1].url,
-            url: item.external_urls.spotify,
+            id: artist.id,
+            name: artist.name,
+            image: artist.images[1].url,
+            genres: artist.genres,
+            url: artist.external_urls.spotify,
         };
     });
 
