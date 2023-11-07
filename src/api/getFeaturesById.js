@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const getFeaturesByIdEndPoint = 'https://api.spotify.com/v1/audio-features/';
 
@@ -19,6 +19,7 @@ const formatFeatures = (features) => {
     }
 
     const { danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence, key, mode, time_signature, tempo } = features;
+    const time = time_signature;
 
     return {
         danceability,
@@ -31,7 +32,7 @@ const formatFeatures = (features) => {
         valence,
         key,
         mode,
-        time: time_signature,
+        time,
         tempo
     }
 };

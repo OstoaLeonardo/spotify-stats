@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 
 export function TrackCard({ index, track }) {
     return (
-        <Link href={'/track/' + track.id}>
+        <Link to={'/track/' + track.id}>
             <Card
                 radius='lg'
                 shadow='none'

@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const relatedTracksEndPoint = 'https://api.spotify.com/v1/recommendations?limit=10';
 
@@ -6,28 +6,34 @@ const getRelatedTracksById = async (artist, track) => {
     try {
         const access_token = localStorage.getItem('access_token');
         const endPoint = relatedTracksEndPoint + '&seed_artists=' + artist + '&seed_tracks=' + track;
-        const tracks = await fetchEndPoint(access_token, endPoint);
-        return formatTracks(tracks);
+        const related = await fetchEndPoint(access_token, endPoint);
+        return formatTracks(related);
     } catch (error) {
         return null;
     }
 };
 
-const formatTracks = (tracks) => {
-    if (!tracks) {
+const formatTracks = (related) => {
+    if (!related) {
         return null;
     }
 
-    const relatedTracks = tracks.tracks;
+    const { tracks } = related;
 
-    const formattedTracks = relatedTracks.map((track) => {
+    const formattedTracks = tracks.map((track) => {
+        const { id, name, artists, album, external_urls, preview_url } = track;
+        const { images } = album;
+        const image = images[1]?.url || images[0]?.url;
+        const url = external_urls.spotify;
+        const previewUrl = preview_url;
+
         return {
-            id: track.id,
-            title: track.name,
-            artist: track.artists.map((artist) => artist.name).join(', '),
-            albumImageUrl: track.album.images[1].url,
-            trackUrl: track.external_urls.spotify,
-            previewUrl: track.preview_url,
+            id,
+            name,
+            artists: artists.map((artist) => artist.name).join(', '),
+            image,
+            url,
+            previewUrl,
         };
     });
 

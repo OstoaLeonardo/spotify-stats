@@ -3,7 +3,7 @@ import { Avatar, Card, CardBody, CardFooter } from '@nextui-org/react'
 
 export function ArtistCard({ index, artist }) {
     return (
-        <Link href={'/artist/' + artist.id}>
+        <Link to={'/artist/' + artist.id}>
             <Card
                 radius='lg'
                 shadow='none'
