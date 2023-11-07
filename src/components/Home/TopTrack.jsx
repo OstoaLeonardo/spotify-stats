@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
-import { useTimeRange } from '../hooks/useTimeRange'
+import { useTimeRange } from '../../hooks/useTimeRange'
 import { Link } from 'react-router-dom'
 import { useInView } from 'framer-motion'
 import { Image, CircularProgress } from '@nextui-org/react'
-import { TopItemCard } from './TopItemCard/TopItemCard'
-import { LinkButton } from './Button/LinkButton'
-import getTopTracks from '../api/getTopTracks'
+import { TopItemCard } from '../TopItemCard/TopItemCard'
+import { LinkButton } from '../Button/LinkButton'
+import getTopTracks from '../../api/getTopTracks'
 import confetti from 'canvas-confetti'
 
 export function TopTrack() {

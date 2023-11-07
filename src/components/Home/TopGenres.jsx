@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useTimeRange } from '../hooks/useTimeRange'
-import { TopItemCard } from './TopItemCard/TopItemCard'
-import getTopArtists from '../api/getTopArtists'
+import { useTimeRange } from '../../hooks/useTimeRange'
+import { TopItemCard } from '../TopItemCard/TopItemCard'
+import getTopArtists from '../../api/getTopArtists'
 
 export function TopGenres() {
     const { timeRange } = useTimeRange()

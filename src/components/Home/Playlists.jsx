@@ -3,8 +3,8 @@ import { Card, CardHeader, CardBody } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
-import { PlaylistCard } from './PlaylistCard'
-import getUserPlaylists from '../api/getUserPlaylists'
+import { PlaylistCard } from '../PlaylistCard'
+import getUserPlaylists from '../../api/getUserPlaylists'
 import '@splidejs/react-splide/css'
 
 export function Playlists() {

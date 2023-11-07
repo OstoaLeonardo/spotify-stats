@@ -1,7 +1,7 @@
-import { useCurrentUser } from '../hooks/useCurrentUser'
+import { useCurrentUser } from '../../hooks/useCurrentUser'
 import { Avatar, Card, CardBody, CardFooter, CardHeader, Chip } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { LinkButton } from './Button/LinkButton'
+import { LinkButton } from '../Button/LinkButton'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
 export function Header() {

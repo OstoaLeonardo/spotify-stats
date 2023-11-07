@@ -1,5 +1,4 @@
-import { Button } from '@nextui-org/button'
-import { Link } from '@nextui-org/link'
+import { Button, Link } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 
@@ -11,6 +10,7 @@ export function SpotifyButton({ children, url, isFlat = false, classNames='' }) 
             size='lg'
             as={Link}
             href={url}
+            isExternal
             color='success'
             variant={isFlat ? 'flat' : 'solid'}
             className={`w-fit font-bold ${classVariant} ${classNames}`}
