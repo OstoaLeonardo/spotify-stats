@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Card, CardHeader, CardBody } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import { PlaylistCard } from './PlaylistCard'
 import getUserPlaylists from '../api/getUserPlaylists'
@@ -11,17 +11,13 @@ export function Playlists() {
     const [playlists, setPlaylists] = useState([])
 
     useEffect(() => {
-        fetchPlaylists()
-    }, [])
-
-    async function fetchPlaylists() {
-        try {
+        async function fetchPlaylists() {
             const response = await getUserPlaylists()
             setPlaylists(response)
-        } catch (error) {
-            console.error('Error fetching top tracks:', error)
         }
-    }
+
+        fetchPlaylists()
+    }, [])
 
     return (
         <Card className='shadow-none p-4'>
@@ -51,7 +47,7 @@ export function Playlists() {
                         <SplideTrack>
                             {playlists.map((playlist, index) => (
                                 <SplideSlide key={index}>
-                                    <PlaylistCard index={index + 1} playlist={playlist} />
+                                    <PlaylistCard playlist={playlist} />
                                 </SplideSlide>
                             ))}
                         </SplideTrack>

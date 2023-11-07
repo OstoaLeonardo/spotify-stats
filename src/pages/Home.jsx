@@ -6,6 +6,7 @@ import { RecentlyPlayed } from '../components/RecentlyPlayed'
 import { CurrentlyPlaying } from '../components/CurrentlyPlaying'
 import { TopTrack } from '../components/TopTrack'
 import { TopGenres } from '../components/TopGenres'
+import { Playlists } from '../components/Playlists'
 
 export default function Home() {
     return (
@@ -31,6 +32,9 @@ export default function Home() {
                     </section>
                     <section className='col-span-full'>
                         <TopGenres />
+                    </section>
+                    <section className='col-span-full'>
+                        <Playlists />
                     </section>
                 </div>
             </div>

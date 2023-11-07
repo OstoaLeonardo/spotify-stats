@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 
-export function PlaylistCard({ index, playlist }) {
+export function PlaylistCard({ playlist }) {
     return (
         <Link to={'/playlist/' + playlist.id}>
             <Card
@@ -15,21 +15,17 @@ export function PlaylistCard({ index, playlist }) {
                         width='100%'
                         height={400}
                         alt={playlist.title}
-                        src={playlist.albumImageUrl}
+                        src={playlist.image}
                         className='object-cover aspect-square'
                     />
                 </CardBody>
-                <CardFooter className='w-full flex items-start gap-3'>
-                    <div className='w-full flex flex-col'>
-                        <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
-                            {playlist.title}
-                        </span>
-                        {playlist.description && (
-                            <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
-                                {playlist.isPublic === true ? 'Public' : 'Private'}
-                            </span>
-                        )}
-                    </div>
+                <CardFooter className='w-full flex flex-col  items-start'>
+                    <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
+                        {playlist.title}
+                    </span>
+                    <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
+                        {playlist.isPublic === false ? 'Private' : 'Public'}
+                    </span>
                 </CardFooter>
             </Card>
         </Link>
