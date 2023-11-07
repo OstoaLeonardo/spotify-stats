@@ -7,7 +7,7 @@ import { CurrentlyPlaying } from '../components/CurrentlyPlaying'
 import { TopTrack } from '../components/TopTrack'
 import { TopGenres } from '../components/TopGenres'
 
-const Home = () => {
+export default function Home() {
     return (
         <main className='w-full min-h-screen flex flex-col items-center p-6'>
             <div className='relative w-full max-w-5xl md:max-w-5xl xl:max-w-7xl'>
@@ -37,5 +37,3 @@ const Home = () => {
         </main>
     )
 }
-
-export default Home
