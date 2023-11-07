@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { advantages } from '../constants/landing'
+import { advantages } from '../../constants/landing'
 
 export function Advantages() {
     return (

@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const playlistsByIdEndPoint = 'https://api.spotify.com/v1/playlists/';
 
@@ -20,27 +20,37 @@ const formatPlaylist = (playlist) => {
 
     const { id, name, description, type, images, collaborative, tracks, external_urls } = playlist;
     const { items } = tracks;
+    const { spotify } = external_urls;
+    const image = images[1]?.url || images[0]?.url;
+    const isPublic = playlist.public;
+    const totalTracks = tracks.total;
+    const url = spotify;
 
     return {
         id,
         name,
         description,
         type,
-        image: images[0].url,
+        image,
         collaborative,
-        isPublic: playlist.public,
-        totalTracks: tracks.total,
+        isPublic,
+        totalTracks,
         tracks: items.map((item) => {
             const { id, name, artists, album, external_urls } = item.track;
+            const { spotify } = external_urls;
+            const { images } = album;
+            const image = images[1]?.url || images[0]?.url;
+            const url = spotify;
+
             return {
                 id,
-                title: name,
-                artist: artists[0].name,
-                albumImageUrl: album.images[1].url,
-                url: external_urls.spotify,
+                name,
+                artists: artists.map((artist) => artist.name).join(', '),
+                image,
+                url,
             };
         }),
-        url: external_urls.spotify,
+        url,
     };
 };
 

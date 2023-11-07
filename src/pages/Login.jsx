@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Landing } from '../components/Landing'
-import { Advantages } from '../components/Advantages'
-import { Footer } from '../components/Footer'
+import { Landing } from '../components/Login/Landing'
+import { Advantages } from '../components/Login/Advantages'
+import { Footer } from '../components/Login/Footer'
 
 export default function Login() {
     const navigate = useNavigate()
