@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useCurrentUser } from '../hooks/useCurrentUser'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink, Input } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
-import { faSearch, faSignOut } from '@fortawesome/free-solid-svg-icons'
-import { accessUrl } from '../api/authorize'
-import { useCurrentUser } from '../hooks/useCurrentUser'
+import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { SearchInput } from './SearchInput'
+import { accessUrl } from '../api/getAuthorization'
 
 const menuItems = [
     { name: 'Profile', href: '/home' },

@@ -4,13 +4,12 @@ import { Landing } from '../components/Landing'
 import { Advantages } from '../components/Advantages'
 import { Footer } from '../components/Footer'
 
-const Login = () => {
+export default function Login() {
     const navigate = useNavigate()
-    
+
     useEffect(() => {
-        if (window.location.hash) {
-            const { access_token, expires_in, token_type } = getAccessToken(window.location.hash)
-            localStorage.clear()
+        const { access_token, token_type, expires_in } = getAccessToken(window.location.hash)
+        if (access_token) {
             localStorage.setItem('access_token', access_token)
             localStorage.setItem('token_type', token_type)
             localStorage.setItem('expires_in', expires_in)
@@ -30,18 +29,10 @@ const Login = () => {
     }
 
     return (
-        <main className='min-h-screen flex flex-col py-2 sm:py-6'>
-            <div className='flex flex-col items-center gap-10'>
-                <section className='w-auto sm:w-screen max-w-5xl md:max-w-5xl xl:max-w-7xl'>
-                    <Landing />
-                </section>
-                <Advantages />
-                <section className='w-auto sm:w-screen max-w-5xl md:max-w-5xl xl:max-w-7xl'>
-                    <Footer />
-                </section>
-            </div>
+        <main className='w-full min-h-screen flex flex-col items-center justify-between'>
+            <Landing />
+            <Advantages />
+            <Footer />
         </main>
     )
 }
-
-export default Login
