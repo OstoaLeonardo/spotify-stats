@@ -8,10 +8,6 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    fontFamily: {
-      'body': ['DM Sans', 'sans-serif'],
-      'sans': ['DM Sans', 'sans-serif'],
-    },
     extend: {
       colors: {
         'guppie-green': '#00f07e',

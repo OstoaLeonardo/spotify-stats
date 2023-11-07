@@ -38,9 +38,9 @@ export function TrackList({ index, track, chip }) {
                     {track.previewUrl !== null && (
                         <Button
                             isIconOnly
-                            onClick={() => playPreview(track.previewUrl)}
-                            variant='light'
                             showAnchorIcon
+                            variant='light'
+                            onClick={() => playPreview(track.previewUrl)}
                             className={`${isHovered.includes(index) ? '' : 'hidden'}`}
                         >
                             <FontAwesomeIcon icon={faPlay} />
@@ -48,23 +48,23 @@ export function TrackList({ index, track, chip }) {
                     )}
                 </CardHeader>
             )}
-            <Link to={'/track/' + track.id} className='w-full flex bg-black/20 rounded-xl'>
+            <Link href={'/track/' + track.id} className='w-full flex bg-black/20 rounded-xl'>
                 <CardBody className='flex flex-row grow items-center pr-0 gap-4'>
                     <Image
                         isZoomed
                         width={50}
                         height={50}
                         radius='sm'
-                        alt={track.title}
-                        src={track.albumImageUrl}
+                        alt={track.name}
+                        src={track.image}
                         className='w-auto h-auto object-cover aspect-square'
                     />
                     <div className='flex flex-col grow'>
                         <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
-                            {track.title}
+                            {track.name}
                         </span>
                         <span className='text-xs font-medium text-foreground-500 line-clamp-1'>
-                            {track.artist}
+                            {track.artists}
                         </span>
                     </div>
                 </CardBody>
@@ -84,7 +84,7 @@ export function TrackList({ index, track, chip }) {
                         as={NextLink}
                         target='_blank'
                         variant='light'
-                        href={track.trackUrl}
+                        href={track.url}
                     >
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </Button>

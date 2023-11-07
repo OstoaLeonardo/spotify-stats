@@ -4,18 +4,27 @@ import { faBackwardStep, faCircle, faForwardStep, faHeart, faPause, faRepeat } f
 import { Card, CardBody, Image, Button, Progress, CircularProgress, Chip } from '@nextui-org/react'
 import getCurrentlyPlaying from '../api/getCurrentlyPlaying'
 
-export function CurrentlyPlaying({ setSongFinished }) {
+export function CurrentlyPlaying() {
     const [progress, setProgress] = useState(0)
-    const [timeElapsed, setTimeElapsed] = useState('0:00')
-    const [leftBarProgress, setLeftBarProgress] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentlyPlaying, setCurrentlyPlaying] = useState({
         name: 'No song playing',
         artist: 'No artist',
-
     })
 
     useEffect(() => {
+        const pollCurrentlyPlaying = async () => {
+            const response = await getCurrentlyPlaying()
+
+            if (response !== null) {
+                setCurrentlyPlaying(response)
+                setProgress(response.progressMs)
+                setIsPlaying(response.isPlaying)
+            }
+
+            setTimeout(pollCurrentlyPlaying, 5000)
+        }
+
         pollCurrentlyPlaying()
     }, [])
 
@@ -23,64 +32,15 @@ export function CurrentlyPlaying({ setSongFinished }) {
         if (isPlaying) {
             const interval = setInterval(() => {
                 setProgress((v) => v + 1000)
-                setTimeElapsed(getTime(progress))
-                setLeftBarProgress((progress * 100) / currentlyPlaying.durationMs)
-                // console.log(progress, currentlyPlaying.durationMs)
-
-                if (progress >= (currentlyPlaying.durationMs - 2000)) {
-                    setSongFinished(true)
-                }
             }, 1000);
             return () => clearInterval(interval)
         }
     }, [progress])
 
-    const pollCurrentlyPlaying = async () => {
-        try {
-            const response = await getCurrentlyPlaying()
-
-            let timeLeft = null
-
-            if (response) {
-                setCurrentlyPlaying(response)
-                const durationMn = getTime(response.durationMs)
-                const progressMn = getTime(response.progressMs)
-                setProgress(response.progressMs)
-                setCurrentlyPlaying((v) => ({ ...v, durationMn, progressMn }))
-
-                setIsPlaying(response.isPlaying)
-                timeLeft = response.durationMs - response.progressMs
-            }
-
-            if (isPlaying === true) {
-                setTimeout(pollCurrentlyPlaying, timeLeft)
-            } else {
-                setTimeout(pollCurrentlyPlaying, 5000)
-            }
-        } catch (error) {
-            console.error('Error fetching currently playing:', error)
-        }
-    }
-
-    const setTime = () => {
-        const interval = setInterval(() => {
-            setProgress((v) => v + 1000)
-            setTimeElapsed(getTime(progress))
-            setLeftBarProgress((progress * 100) / currentlyPlaying.durationMs)
-            console.log(progress, currentlyPlaying.durationMs)
-
-            if (progress >= (currentlyPlaying.durationMs - 2000)) {
-                setSongFinished(true)
-            }
-        }, 1000);
-        return () => clearInterval(interval)
-    }
-
     const getTime = (ms) => {
         const minutes = Math.floor(ms / 60000)
         const seconds = ((ms % 60000) / 1000).toFixed(0)
-        const time = minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-        return time
+        return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
     }
 
     return (
@@ -88,14 +48,14 @@ export function CurrentlyPlaying({ setSongFinished }) {
             <CardBody>
                 <div className='grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center'>
                     <div className='flex justify-center col-span-6 md:col-span-4 aspect-square'>
-                        {currentlyPlaying.albumArt === undefined
+                        {currentlyPlaying.image === undefined
                             ? <CircularProgress color='success' />
                             : <Image
                                 isZoomed
                                 width='100%'
                                 height={200}
                                 alt={currentlyPlaying.name}
-                                src={currentlyPlaying.albumArt}
+                                src={currentlyPlaying.image}
                                 className='object-cover aspect-square'
                             />
                         }
@@ -124,14 +84,14 @@ export function CurrentlyPlaying({ setSongFinished }) {
                                     }
                                 </Chip>
                                 <p className='text-large font-medium line-clamp-1 mt-2'>{currentlyPlaying.name}</p>
-                                <p className='text-small text-foreground/80 line-clamp-1'>{currentlyPlaying.artist}</p>
+                                <p className='text-small text-foreground/80 line-clamp-1'>{currentlyPlaying.artists}</p>
                             </div>
                             <Button
                                 isIconOnly
-                                className='text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2'
                                 radius='full'
                                 variant='light'
-                            // onPress={() => setLiked((v) => !v)}
+                                aria-label='Like'
+                                className='text-foreground-500 hover:bg-foreground-100 -translate-y-2 translate-x-2'
                             >
                                 <FontAwesomeIcon icon={faHeart} />
                             </Button>
@@ -146,52 +106,64 @@ export function CurrentlyPlaying({ setSongFinished }) {
                                 }}
                                 color='default'
                                 size='sm'
-                                value={leftBarProgress}
+                                value={(progress * 100) / currentlyPlaying.durationMs}
                             />
                             <div className='flex justify-between'>
-                                <p className='text-small'>{timeElapsed}</p>
-                                <p className='text-small text-foreground/50'>{currentlyPlaying.durationMn}</p>
+                                <p className='text-small'>
+                                    {getTime(progress)}
+                                </p>
+                                <p className='text-small text-foreground/50'>
+                                    {currentlyPlaying.durationMs === undefined
+                                        ? '0:00'
+                                        : getTime(currentlyPlaying.durationMs)
+                                    }
+                                </p>
                             </div>
                         </div>
 
                         <div className='flex w-full items-center justify-center'>
                             <Button
                                 isIconOnly
-                                className='data-[hover]:bg-foreground/10'
                                 radius='full'
                                 variant='light'
+                                aria-label='Repeat'
+                                className='hover:bg-foreground-100'
                             >
                                 <FontAwesomeIcon icon={faRepeat} />
                             </Button>
                             <Button
                                 isIconOnly
-                                className='data-[hover]:bg-foreground/10'
                                 radius='full'
                                 variant='light'
+                                aria-label='Previous song'
+                                className='hover:bg-foreground-100'
                             >
                                 <FontAwesomeIcon icon={faBackwardStep} />
                             </Button>
                             <Button
                                 isIconOnly
-                                className='data-[hover]:bg-foreground/10'
                                 radius='full'
                                 variant='light'
+                                aria-label='Play'
+                                className='hover:bg-foreground-100'
                             >
                                 <FontAwesomeIcon icon={faPause} />
                             </Button>
                             <Button
                                 isIconOnly
-                                className='data-[hover]:bg-foreground/10'
                                 radius='full'
                                 variant='light'
+                                aria-label='Next song'
+                                className='hover:bg-foreground-100'
                             >
                                 <FontAwesomeIcon icon={faForwardStep} />
                             </Button>
                             <Button
                                 isIconOnly
-                                className='data-[hover]:bg-foreground/10'
                                 radius='full'
                                 variant='light'
+                                aria-label='Shuffle'
+                                className='hover:bg-foreground-100'
                             >
                                 <FontAwesomeIcon icon={faForwardStep} />
                             </Button>

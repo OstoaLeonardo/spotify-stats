@@ -1,42 +1,37 @@
-import { useState } from 'react'
 import { Header } from '../components/Header'
+import { TimeRangeGroup } from '../components/TimeRangeGroup'
 import { TopTracks } from '../components/TopTracks'
 import { TopArtists } from '../components/TopArtists'
 import { RecentlyPlayed } from '../components/RecentlyPlayed'
 import { CurrentlyPlaying } from '../components/CurrentlyPlaying'
 import { TopTrack } from '../components/TopTrack'
-import { Playlists } from '../components/Playlists'
 import { TopGenres } from '../components/TopGenres'
 
 const Home = () => {
-    const [songFinished, setSongFinished] = useState(false)
-
     return (
-        <main className='min-h-screen flex flex-col items-center py-2 px-6 sm:p-6'>
-            <div className='w-full grid grid-cols-3 sm:grid-cols-4 gap-2 md:gap-4 max-w-5xl md:max-w-5xl xl:max-w-7xl'>
-                <div className='flex flex-col col-span-full'>
-                    <Header />
-                </div>
-                <div className='flex flex-col col-span-3 sm:col-span-2'>
-                    <RecentlyPlayed songFinished={songFinished} />
-                </div>
-                <div className='flex flex-col col-span-3 sm:col-span-2'>
-                    <CurrentlyPlaying setSongFinished={setSongFinished} />
-                </div>
-                <div className='flex flex-col col-span-full'>
-                    <TopTrack />
-                </div>
-                <div className='flex flex-col col-span-full'>
-                    <TopTracks />
-                </div>
-                <div className='flex flex-col col-span-full'>
-                    <TopArtists />
-                </div>
-                <div className='flex flex-col col-span-full'>
-                    <TopGenres />
-                </div>
-                <div className='flex flex-col col-span-full'>
-                    <Playlists />
+        <main className='w-full min-h-screen flex flex-col items-center p-6'>
+            <div className='relative w-full max-w-5xl md:max-w-5xl xl:max-w-7xl'>
+                <div className='grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4'>
+                    <section className='col-span-full'>
+                        <Header />
+                    </section>
+                    <section className='sticky top-[11%] sm:top-[13%] w-full flex justify-end bg-chinese-black col-span-full py-3 z-30'>
+                        <TimeRangeGroup />
+                    </section>
+                    <RecentlyPlayed />
+                    <CurrentlyPlaying />
+                    <section className='col-span-full'>
+                        <TopTrack />
+                    </section>
+                    <section className='col-span-full'>
+                        <TopTracks />
+                    </section>
+                    <section className='col-span-full'>
+                        <TopArtists />
+                    </section>
+                    <section className='col-span-full'>
+                        <TopGenres />
+                    </section>
                 </div>
             </div>
         </main>

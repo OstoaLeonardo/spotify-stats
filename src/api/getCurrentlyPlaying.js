@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const currentlyPlayingEndPoint = 'https://api.spotify.com/v1/me/player/currently-playing';
 
@@ -18,16 +18,21 @@ const formatCurrentlyPlaying = (song) => {
     }
     
     const track = song.item;
+    const { id, name, artists, album, duration_ms } = track;
+    const { images } = album;
+    const image = images[1]?.url || images[0]?.url;
+    const durationMs = duration_ms;
+    const progressMs = song.progress_ms;
+    const isPlaying = song.is_playing;
 
     return {
-        name: track.name,
-        artist: track.artists.map((artist) => artist.name).join(', '),
-        album: track.album.name,
-        albumArt: track.album.images[1].url,
-        durationMs: track.duration_ms,
-        progressMs: song.progress_ms,
-        url: track.external_urls.spotify,
-        isPlaying: song.is_playing
+        id,
+        name,
+        artists: artists.map((artist) => artist.name).join(', '),
+        image,
+        durationMs,
+        progressMs,
+        isPlaying,
     };
 };
 

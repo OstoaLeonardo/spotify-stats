@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Avatar, Card, CardBody, CardFooter, Image } from '@nextui-org/react'
+import { Avatar, Card, CardBody, CardFooter } from '@nextui-org/react'
 
 export function ArtistCard({ index, artist }) {
     return (
-        <Link to={'/artist/' + artist.id}>
+        <Link href={'/artist/' + artist.id}>
             <Card
                 radius='lg'
                 shadow='none'

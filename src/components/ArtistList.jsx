@@ -14,7 +14,7 @@ export function ArtistList({ index, artist }) {
                     {index}.
                 </span>
             </CardHeader>
-            <Link to={'/artist/' + artist.id} className='w-full flex bg-black/20 rounded-xl'>
+            <Link href={'/artist/' + artist.id} className='w-full flex bg-black/20 rounded-xl'>
                 <CardBody className='flex flex-row items-center pr-0 gap-4'>
                     <Image
                         isZoomed
@@ -33,9 +33,9 @@ export function ArtistList({ index, artist }) {
                     <Button
                         isIconOnly
                         as={NextLink}
-                        href={artist.url}
                         target='_blank'
                         variant='light'
+                        href={artist.url}
                     >
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </Button>

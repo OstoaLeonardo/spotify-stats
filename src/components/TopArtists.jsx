@@ -1,30 +1,28 @@
 import { useState, useEffect } from 'react'
-import { Card, CardHeader, CardBody, CardFooter, Image, Button, Select, SelectItem, CircularProgress, Link } from '@nextui-org/react'
+import { useTimeRange } from '../hooks/useTimeRange'
+import { Card, CardHeader, CardBody, Select, SelectItem, CircularProgress } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
-import { ranges, limits } from '../constants/lists'
-import getTopArtists from '../api/getTopArtists'
+import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
+import { IconButton } from './Button/IconButton'
 import { ArtistCard } from './ArtistCard'
 import { ArtistList } from './ArtistList'
+import { limits } from '../constants/lists'
+import getTopArtists from '../api/getTopArtists'
 
 export function TopArtists() {
-    const [topArtists, setTopArtists] = useState([])
-    const [selectedRange, setSelectedRange] = useState()
-    const [selectedLimit, setSelectedLimit] = useState()
+    const { timeRange } = useTimeRange()
     const [modeList, setModeList] = useState(false)
+    const [topArtists, setTopArtists] = useState([])
+    const [limit, setLimit] = useState()
 
     useEffect(() => {
-        fetchTopArtists()
-    }, [])
-
-    async function fetchTopArtists(selectedRange, selectedLimit) {
-        try {
-            const response = await getTopArtists(selectedRange, selectedLimit)
+        async function fetchTopArtists() {
+            const response = await getTopArtists(timeRange, limit)
             setTopArtists(response)
-        } catch (error) {
-            console.error('Error fetching top artists:', error)
         }
-    }
+
+        fetchTopArtists(limit)
+    }, [timeRange, limit])
 
     const toggleModeList = () => {
         setModeList(!modeList)
@@ -37,51 +35,27 @@ export function TopArtists() {
                     Top <span className='text-guppie-green'>Artists</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
-                    <Button
-                        isIconOnly
-                        onClick={() => toggleModeList()}
-                        variant='light'
-                        showAnchorIcon
-                    >
+                    <IconButton label='Toggle mode list' handleClick={() => toggleModeList()}>
                         {modeList ? (
                             <FontAwesomeIcon icon={faList} />
                         ) : (
                             <FontAwesomeIcon icon={faTableCellsLarge} />
                         )}
-                    </Button>
+                    </IconButton>
                     <Select
-                        labelPlacement={'inside'}
                         label='Limit'
+                        labelPlacement='inside'
                         className='max-w-[100px]'
                         defaultSelectedKeys={[limits[0].value]}
                         disallowEmptySelection={true}
                         onChange={(e) => {
                             const selected = e.target.value
-                            setSelectedLimit(selected)
-                            fetchTopArtists(selectedRange, selected)
+                            setLimit(selected)
                         }}
                     >
                         {limits.map((limit) => (
                             <SelectItem key={limit.value} value={limit.value}>
                                 {limit.label}
-                            </SelectItem>
-                        ))}
-                    </Select>
-                    <Select
-                        labelPlacement={'inside'}
-                        label='Period'
-                        className='max-w-[200px]'
-                        defaultSelectedKeys={[ranges[2].value]}
-                        disallowEmptySelection={true}
-                        onChange={(e) => {
-                            const selected = e.target.value
-                            setSelectedRange(selected)
-                            fetchTopArtists(selected, selectedLimit)
-                        }}
-                    >
-                        {ranges.map((range) => (
-                            <SelectItem key={range.value} value={range.value}>
-                                {range.label}
                             </SelectItem>
                         ))}
                     </Select>
@@ -103,7 +77,6 @@ export function TopArtists() {
                         ))}
                     </div>
                 )}
-
             </CardBody>
         </Card>
     )

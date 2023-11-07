@@ -4,35 +4,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faHeart, faPlay } from '@fortawesome/free-solid-svg-icons'
 import getRecentlyPlayed from '../api/getRecentlyPlayed'
 
-export function RecentlyPlayed({ songFinished }) {
+export function RecentlyPlayed() {
     const [recentlyPlayed, setRecentlyPlayed] = useState([])
 
     useEffect(() => {
-        if (songFinished === true) {
-            fetchRecentlyPlayed()
-        }
-
-        fetchRecentlyPlayed()
-    }, [songFinished])
-
-    async function fetchRecentlyPlayed() {
-        try {
+        const pollRecentlyPlayed = async () => {
             const response = await getRecentlyPlayed()
-            setRecentlyPlayed(response[0])
 
-            const minutes = Math.floor(response[0].durationMs / 60000)
-            const seconds = ((response[0].durationMs % 60000) / 1000).toFixed(0)
-            const durationMn = minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-            setRecentlyPlayed((v) => ({ ...v, durationMn }))
-        } catch (error) {
-            console.error('Error fetching recently played:', error)
+            if (response !== null) {
+                setRecentlyPlayed(response[0])
+            }
+
+            setTimeout(pollRecentlyPlayed, 10000)
         }
-    }
 
-    const playPreview = (previewUrl) => {
-        if (previewUrl === null) return
-        const audio = new Audio(previewUrl)
-        audio.play()
+        pollRecentlyPlayed()
+    }, [])
+
+    const getDuration = (ms) => {
+        const minutes = Math.floor(ms / 60000)
+        const seconds = ((ms % 60000) / 1000).toFixed(0)
+        return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
     }
 
     return (
@@ -40,14 +32,14 @@ export function RecentlyPlayed({ songFinished }) {
             <CardBody>
                 <div className='grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center'>
                     <div className='flex justify-center col-span-6 md:col-span-4 aspect-square'>
-                        {recentlyPlayed.albumImageUrl === undefined
+                        {recentlyPlayed.image === undefined
                             ? <CircularProgress color='success' />
                             : <Image
                                 isZoomed
                                 width='100%'
                                 height={200}
                                 alt={recentlyPlayed.name}
-                                src={recentlyPlayed.albumImageUrl}
+                                src={recentlyPlayed.image}
                                 className='object-cover aspect-square'
                             />
                         }
@@ -64,15 +56,15 @@ export function RecentlyPlayed({ songFinished }) {
                                 >
                                     Recently played
                                 </Chip>
-                                <span className='text-large font-medium line-clamp-1 mt-2'>{recentlyPlayed.title}</span>
-                                <span className='text-small text-foreground/80 line-clamp-1'>{recentlyPlayed.artist}</span>
+                                <span className='text-large font-medium line-clamp-1 mt-2'>{recentlyPlayed.name}</span>
+                                <span className='text-small text-foreground/80 line-clamp-1'>{recentlyPlayed.artists}</span>
                             </div>
                             <Button
                                 isIconOnly
-                                className='text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2'
                                 radius='full'
                                 variant='light'
-                                onPress={() => setLiked((v) => !v)}
+                                aria-label='Like'
+                                className='text-foreground-500 hover:bg-foreground-100 -translate-y-2 translate-x-2'
                             >
                                 <FontAwesomeIcon icon={faHeart} />
                             </Button>
@@ -90,8 +82,8 @@ export function RecentlyPlayed({ songFinished }) {
                                 value={100}
                             />
                             <div className='flex justify-between'>
-                                <p className='text-small'>{recentlyPlayed.durationMn}</p>
-                                <p className='text-small text-foreground/50'>{recentlyPlayed.durationMn}</p>
+                                <p className='text-small'>{getDuration(recentlyPlayed.durationMs)}</p>
+                                <p className='text-small text-foreground/50'>{getDuration(recentlyPlayed.durationMs)}</p>
                             </div>
                         </div>
 
@@ -100,7 +92,6 @@ export function RecentlyPlayed({ songFinished }) {
                                 radius='full'
                                 variant='light'
                                 startContent={<FontAwesomeIcon icon={faPlay} />}
-                                onClick={() => playPreview(recentlyPlayed.previewUrl)}
                                 className={`hover:bg-foreground/10 ${recentlyPlayed.previewUrl ? '' : 'invisible'}`}
                             >
                                 Play preview

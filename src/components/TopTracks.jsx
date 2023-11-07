@@ -1,36 +1,28 @@
 import { useState, useEffect } from 'react'
-import { Card, CardHeader, CardBody, Button, Select, SelectItem, CircularProgress } from '@nextui-org/react'
+import { useTimeRange } from '../hooks/useTimeRange'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
+import { Card, CardHeader, CardBody, Select, SelectItem, CircularProgress } from '@nextui-org/react'
+import { IconButton } from './Button/IconButton'
 import { TrackCard } from './TrackCard'
 import { TrackList } from './TrackList'
-import { ranges, limits } from '../constants/lists'
+import { limits } from '../constants/lists'
 import getTopTracks from '../api/getTopTracks'
 
 export function TopTracks() {
-    const [topTracks, setTopTracks] = useState([])
-    const [selectedRange, setSelectedRange] = useState()
-    const [selectedLimit, setSelectedLimit] = useState()
+    const { timeRange } = useTimeRange()
     const [modeList, setModeList] = useState(false)
+    const [topTracks, setTopTracks] = useState([])
+    const [limit, setLimit] = useState()
 
     useEffect(() => {
-        fetchTopTracks()
-    }, [])
-
-    async function fetchTopTracks(selectedRange, selectedLimit) {
-        try {
-            const response = await getTopTracks(selectedRange, selectedLimit)
+        async function fetchTopTracks() {
+            const response = await getTopTracks(timeRange, limit)
             setTopTracks(response)
-        } catch (error) {
-            console.error('Error fetching top tracks:', error)
         }
-    }
 
-    const playPreview = (previewUrl) => {
-        if (previewUrl === null) return
-        const audio = new Audio(previewUrl)
-        audio.play()
-    }
+        fetchTopTracks(limit)
+    }, [timeRange, limit])
 
     const toggleModeList = () => {
         setModeList(!modeList)
@@ -40,54 +32,30 @@ export function TopTracks() {
         <Card className='shadow-none p-4'>
             <CardHeader className='flex flex-col sm:flex-row justify-between gap-3'>
                 <h3 className='w-full text-2xl sm:text-4xl font-bold'>
-                    Top <span className='text-guppie-green'>Songs</span>
+                    Top <span className='text-guppie-green'>Tracks</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
-                    <Button
-                        isIconOnly
-                        onClick={() => toggleModeList()}
-                        variant='light'
-                        showAnchorIcon
-                    >
+                    <IconButton label='Toggle mode list' handleClick={() => toggleModeList()}>
                         {modeList ? (
                             <FontAwesomeIcon icon={faList} />
                         ) : (
                             <FontAwesomeIcon icon={faTableCellsLarge} />
                         )}
-                    </Button>
+                    </IconButton>
                     <Select
-                        labelPlacement={'inside'}
                         label='Limit'
+                        labelPlacement='inside'
                         className='max-w-[100px]'
                         defaultSelectedKeys={[limits[0].value]}
                         disallowEmptySelection={true}
                         onChange={(e) => {
                             const selected = e.target.value
-                            setSelectedLimit(selected)
-                            fetchTopTracks(selectedRange, selected)
+                            setLimit(selected)
                         }}
                     >
                         {limits.map((limit) => (
                             <SelectItem key={limit.value} value={limit.value}>
                                 {limit.label}
-                            </SelectItem>
-                        ))}
-                    </Select>
-                    <Select
-                        labelPlacement={'inside'}
-                        label='Period'
-                        className='max-w-[200px]'
-                        defaultSelectedKeys={[ranges[2].value]}
-                        disallowEmptySelection={true}
-                        onChange={(e) => {
-                            const selected = e.target.value
-                            setSelectedRange(selected)
-                            fetchTopTracks(selected, selectedLimit)
-                        }}
-                    >
-                        {ranges.map((range) => (
-                            <SelectItem key={range.value} value={range.value}>
-                                {range.label}
                             </SelectItem>
                         ))}
                     </Select>

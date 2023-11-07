@@ -1,7 +1,8 @@
 import { useCurrentUser } from '../hooks/useCurrentUser'
-import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Link } from '@nextui-org/react'
+import { Avatar, Card, CardBody, CardFooter, CardHeader, Chip } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { LinkButton } from './Button/LinkButton'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
 export function Header() {
     const { currentUser } = useCurrentUser()
@@ -14,19 +15,10 @@ export function Header() {
                     showFallback
                     size='lg'
                     color='success'
-                    src={currentUser.image}
+                    src={currentUser ? currentUser.image : ''}
                     className='w-16 h-auto aspect-square'
                 />
-                <Button
-                    isIconOnly
-                    as={Link}
-                    href={currentUser.url}
-                    target='_blank'
-                    variant='flat'
-                    className='absolute top-3 right-3 hover:scale-125 transition-transform'
-                >
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                </Button>
+                <LinkButton href={currentUser.url} />
             </CardHeader>
             <CardBody className='col-span-full sm:col-span-11 items-start py-1'>
                 <span className='text-3xl sm:text-5xl font-bold place-items-center line-clamp-2'>
@@ -48,11 +40,9 @@ export function Header() {
                 >
                     {currentUser.product}
                 </Chip>
-                {currentUser && (
-                    <span className='text-foreground-500 text-base sm:text-xl font-medium'>
-                        Here are your stats
-                    </span>
-                )}
+                <span className='text-foreground-500 text-base sm:text-xl font-medium'>
+                    Here are your stats
+                </span>
             </CardFooter>
         </Card >
     )

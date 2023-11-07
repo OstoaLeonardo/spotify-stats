@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 
 export function TrackCard({ index, track }) {
     return (
-        <Link to={'/track/' + track.id}>
+        <Link href={'/track/' + track.id}>
             <Card
                 radius='lg'
                 shadow='none'
@@ -14,8 +14,8 @@ export function TrackCard({ index, track }) {
                         isZoomed
                         width='100%'
                         height={400}
-                        alt={track.title}
-                        src={track.albumImageUrl}
+                        alt={track.name}
+                        src={track.image}
                         className='object-cover aspect-square'
                     />
                 </CardBody>
@@ -27,10 +27,10 @@ export function TrackCard({ index, track }) {
                     )}
                     <div className='w-full flex flex-col'>
                         <span className='text-xs sm:text-sm text-foreground-500 font-medium line-clamp-1'>
-                            {track.artist}
+                            {track.artists}
                         </span>
                         <span className='text-sm sm:text-lg font-semibold line-clamp-1'>
-                            {track.title}
+                            {track.name}
                         </span>
                     </div>
                 </CardFooter>
