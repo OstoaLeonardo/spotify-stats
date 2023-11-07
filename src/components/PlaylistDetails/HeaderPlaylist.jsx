@@ -33,7 +33,7 @@ export function HeaderPlaylist({ playlist }) {
                         </p>
                     </Skeleton>
                     <Skeleton isLoaded={isLoaded} className='w-fit h-12 rounded-2xl mt-12'>
-                        <SpotifyButton url={playlist.url}>
+                        <SpotifyButton url={playlist.url} isExternal>
                             Open in with Spotify
                         </SpotifyButton>
                     </Skeleton>

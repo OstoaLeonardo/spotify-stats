@@ -46,7 +46,7 @@ export function HeaderTrack({ track }) {
                         </div>
                     </Skeleton>
                     <Skeleton isLoaded={isLoaded} className='w-fit h-12 rounded-2xl mt-12'>
-                        <SpotifyButton url={track.url}>
+                        <SpotifyButton url={track.url} isExternal>
                             Open in with Spotify
                         </SpotifyButton>
                     </Skeleton>
