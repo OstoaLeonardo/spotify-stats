@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const getArtistByIdEndPoint = 'https://api.spotify.com/v1/artists/';
 
@@ -19,16 +19,19 @@ const formatArtist = (artist) => {
     }
     
     const { id, name, images, genres, type, popularity, followers, external_urls } = artist;
+    const { total } = followers;
+    const image = images[1].url || images[0].url;
+    const url = external_urls.spotify;
 
     return {
         id,
         name,
-        image: images[1].url,
+        image,
         genres,
         type,
         popularity,
-        followers: followers.total,
-        url: external_urls.spotify
+        followers: total,
+        url,
     }
 };
 

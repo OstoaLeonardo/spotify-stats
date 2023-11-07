@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const relatedArtistEndPoint = 'https://api.spotify.com/v1/artists/';
 
@@ -6,24 +6,30 @@ const getRelatedArtistById = async (id) => {
     try {
         const access_token = localStorage.getItem('access_token');
         const endPoint = relatedArtistEndPoint + id + '/related-artists'
-        const artists = await fetchEndPoint(access_token, endPoint);
-        return formatArtists(artists);
+        const related = await fetchEndPoint(access_token, endPoint);
+        return formatArtists(related);
     } catch (error) {
         return null;
     }
 };
 
-const formatArtists = (artists) => {
-    if (!artists) {
+const formatArtists = (related) => {
+    if (!related) {
         return null;
     }
 
-    const formattedArtists = artists.artists.map((artist) => {
+    const { artists } = related;
+
+    const formattedArtists = artists.map((artist) => {
+        const {id, name, images, external_urls} = artist;
+        const image = images[1]?.url || images[0]?.url;
+        const url = external_urls.spotify;
+
         return {
-            id: artist.id,
-            name: artist.name,
-            image: artist.images[1].url,
-            url: artist.external_urls.spotify
+            id,
+            name,
+            image,
+            url,
         };
     });
 

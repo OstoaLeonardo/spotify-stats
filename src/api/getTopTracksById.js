@@ -1,4 +1,4 @@
-import fetchEndPoint from './fetchEndPoint.js'
+import fetchEndPoint from './fetchEndPoint'
 
 const topTracksEndPoint = 'https://api.spotify.com/v1/artists/';
 
@@ -17,20 +17,26 @@ const formatTopTracks = (topTracks) => {
     if (!topTracks) {
         return null;
     }
-    
-    const tracks = topTracks.tracks;
+
+    const { tracks } = topTracks;
 
     const formattedTracks = tracks.map((track) => {
+        const { id, name, artists, album, external_urls, preview_url } = track;
+        const { images } = album;
+        const image = images[1]?.url || images[0]?.url;
+        const url = external_urls.spotify;
+        const previewUrl = preview_url;
+
         return {
-            id: track.id,
-            title: track.name,
-            artist: track.artists.map((artist) => artist.name).join(', '),
-            albumImageUrl: track.album.images[1].url,
-            trackUrl: track.external_urls.spotify,
-            previewUrl: track.preview_url,
+            id,
+            name,
+            artists: artists.map((artist) => artist.name).join(', '),
+            image,
+            url,
+            previewUrl,
         };
     });
-    
+
     return formattedTracks;
 };
 
