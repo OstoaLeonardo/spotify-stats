@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Card, CardHeader, CardBody, CardFooter, Image, Button, Select, SelectItem, CircularProgress, Chip, Link } from '@nextui-org/react'
+import { Card, CardBody, CardHeader, CircularProgress, Select, SelectItem } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faClock, faList, faPlay, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
-import { limits } from '../constants/lists'
-import getRecentlyPlayed from '../api/getRecentlyPlayed'
+import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
+import { IconButton } from './Button/IconButton'
 import { TrackCard } from './TrackCard'
 import { TrackList } from './TrackList'
+import { limits } from '../constants/lists'
+import getRecentlyPlayed from '../api/getRecentlyPlayed'
 
 export function RecentlyTracks() {
     const [recentlyTracks, setRecentlyTracks] = useState([])
-    const [isHovered, setIsHovered] = useState([])
     const [modeList, setModeList] = useState(true)
 
     useEffect(() => {
@@ -17,12 +17,8 @@ export function RecentlyTracks() {
     }, [])
 
     async function fetchRecentlyTracks(selectedLimit = 5) {
-        try {
-            const response = await getRecentlyPlayed(selectedLimit)
-            setRecentlyTracks(response)
-        } catch (error) {
-            console.error('Error fetching top tracks:', error)
-        }
+        const response = await getRecentlyPlayed(selectedLimit)
+        setRecentlyTracks(response)
     }
 
     const getWhenWasPlayed = (playedAt) => {
@@ -57,12 +53,6 @@ export function RecentlyTracks() {
         return time
     }
 
-    const playPreview = (previewUrl) => {
-        if (previewUrl === null) return
-        const audio = new Audio(previewUrl)
-        audio.play()
-    }
-
     const toggleModeList = () => {
         setModeList(!modeList)
     }
@@ -74,27 +64,21 @@ export function RecentlyTracks() {
                     Recently <span className='text-guppie-green'>Tracks</span>
                 </h3>
                 <div className='w-full flex flex-row justify-end items-center gap-3'>
-                    <Button
-                        isIconOnly
-                        onClick={() => toggleModeList()}
-                        variant='light'
-                        showAnchorIcon
-                    >
+                    <IconButton label='Toggle mode list' handleClick={() => toggleModeList()}>
                         {modeList ? (
                             <FontAwesomeIcon icon={faList} />
                         ) : (
                             <FontAwesomeIcon icon={faTableCellsLarge} />
                         )}
-                    </Button>
+                    </IconButton>
                     <Select
-                        labelPlacement={'inside'}
                         label='Limit'
+                        labelPlacement='inside'
                         className='max-w-[100px]'
-                        defaultSelectedKeys={[limits[0].value]}
                         disallowEmptySelection={true}
+                        defaultSelectedKeys={[limits[0].value]}
                         onChange={(e) => {
-                            const selected = e.target.value
-                            fetchRecentlyTracks(selected)
+                            fetchRecentlyTracks(e.target.value)
                         }}
                     >
                         {limits.map((limit) => (
