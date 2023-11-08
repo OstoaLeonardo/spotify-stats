@@ -20,7 +20,8 @@ const formatCurrentUser = (user) => {
     const { display_name, email, images, external_urls, product } = user;
     const name = display_name;
     const image = images[0]?.url || null;
-    const { url } = external_urls;
+    const { spotify } = external_urls;
+    const url = spotify;
     
     return {
         name,
