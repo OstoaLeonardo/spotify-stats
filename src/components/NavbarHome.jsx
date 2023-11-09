@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCurrentUser } from '../hooks/useCurrentUser'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink, Input } from '@nextui-org/react'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink, Input, Image } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { SearchInput } from './SearchInput'
 import { accessUrl } from '../api/getAuthorization'
+import {Logo} from '../assets/icons'
 
 const menuItems = [
     { name: 'Profile', href: '/home' },
@@ -62,10 +63,8 @@ export function NavbarHome() {
                     />
                 }
                 <NavbarBrand>
-                    <FontAwesomeIcon
-                        icon={faSpotify}
-                        className='w-auto h-5 sm:h-7 text-guppie-green mr-3' />
-                    <p className='hidden sm:flex text-xl font-semibold text-inherit'>Your Spotify Stats</p>
+                    <Logo classNames='w-8 h-8 sm:w-10 sm:h-10 mr-2' />
+                    <p className='hidden sm:flex text-2xl font-bold text-inherit'>Wavestify</p>
                 </NavbarBrand>
             </NavbarContent>
 
