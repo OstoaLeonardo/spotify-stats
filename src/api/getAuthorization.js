@@ -1,7 +1,7 @@
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 const clientId = 'b98830dfd88f4b03b153bbe48623e883';
 const responseType = 'code';
-const redirectUri = 'http://localhost:5173/';
+const redirectUri = 'https://wavestify.vercel.app/';
 const scopes = [
     'user-read-email',
     'user-read-private',
