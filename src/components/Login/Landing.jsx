@@ -1,6 +1,6 @@
 import { Card, CardBody } from '@nextui-org/react'
 import { SpotifyButton } from '../Button/SpotifyButton'
-import { accessUrl } from '../../api/getAuthorization'
+import { logIn } from '../../api/getAuth'
 
 export function Landing() {
     return (
@@ -20,7 +20,10 @@ export function Landing() {
                     <p className='text-sm sm:text-lg text-foreground-500'>
                         and see your stats in a beautiful way
                     </p>
-                    <SpotifyButton url={accessUrl} classNames='mt-8'>
+                    <SpotifyButton
+                        classNames='mt-8'
+                        onPress={logIn}
+                    >
                         Log in with Spotify
                     </SpotifyButton>
                 </CardBody>

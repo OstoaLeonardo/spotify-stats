@@ -1,21 +1,13 @@
-const authEndpoint = 'https://accounts.spotify.com/authorize';
-const clientId = 'b98830dfd88f4b03b153bbe48623e883';
-const responseType = 'code';
-const redirectUri = 'https://wavestify.vercel.app/';
-const scopes = [
-    'user-read-email',
-    'user-read-private',
-    'user-read-recently-played',
-    'user-read-currently-playing',
-    'user-top-read',
-    'playlist-read-private',
-    'playlist-read-collaborative'
-];
+import { SPOTIFY } from '../constants/spotify.js';
+
+const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const { REDIRECT_URI, AUTH_ENDPOINT, SCOPES } = SPOTIFY;
+const RESPONSE_TYPE = 'token';
 
 export const accessUrl =
-    authEndpoint +
-    '?client_id=' + clientId +
-    '&response_type=' + responseType +
-    '&redirect_uri=' + redirectUri +
-    '&scope=' + scopes.join('%20') +
-    '&response_type=token&show_dialog=true';
+    AUTH_ENDPOINT +
+    '?client_id=' + CLIENT_ID +
+    '&redirect_uri=' + REDIRECT_URI +
+    '&scope=' + SCOPES.join('%20') +
+    '&response_type=' + RESPONSE_TYPE + 
+    '&show_dialog=true';

@@ -2,13 +2,14 @@ import { Button, Link } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 
-export function SpotifyButton({ children, url, isFlat = false, classNames='', isExternal = false }) {
+export function SpotifyButton({ children, onPress, url, isFlat = false, classNames='', isExternal = false }) {
     const classVariant = isFlat ? 'text-guppie-green' : 'bg-guppie-green'
 
     return (
         <Button
             size='lg'
-            as={Link}
+            onPress={onPress}
+            as={isExternal ? Link : Button}
             href={url}
             isExternal={isExternal}
             color='success'
