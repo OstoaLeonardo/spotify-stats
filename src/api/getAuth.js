@@ -112,14 +112,18 @@ async function refreshToken() {
     return await response.json();
 }
 
-const code = getCodeFromUrl();
+async function getAccessToken() {
+    const code = getCodeFromUrl();
 
-if (code) {
-    const token = await getToken(code);
-    CURRENT_TOKEN.save(token);
+    if (code) {
+        const token = await getToken(code);
+        CURRENT_TOKEN.save(token);
 
-    window.location.href = '/home';
+        window.location.href = '/home';
+    }
 }
+
+getAccessToken();
 
 export async function logIn() {
     await redirectToSpotifyAuthorize();
@@ -132,7 +136,7 @@ export async function logOut() {
 
 export async function autoRefreshToken() {
     const expiresAt = localStorage.getItem('expires_at');
-    
+
     if (Date.now() > expiresAt) {
         const token = await refreshToken();
         CURRENT_TOKEN.save(token);
