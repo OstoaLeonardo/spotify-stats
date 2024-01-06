@@ -1,6 +1,6 @@
-import { useTimeRange } from '../hooks/useTimeRange'
 import { Button, ButtonGroup } from '@nextui-org/react'
-import { ranges } from '../constants/lists'
+import { useTimeRange } from '../../hooks'
+import { ranges } from '../../constants/lists'
 
 export function TimeRangeGroup() {
     const { timeRange, setTimeRange } = useTimeRange()

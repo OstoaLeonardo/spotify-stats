@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useTimeRange } from '../hooks/useTimeRange'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardHeader, CardBody, Select, SelectItem, CircularProgress } from '@nextui-org/react'
-import { IconButton } from './Button/IconButton'
-import { TrackCard } from './TrackCard'
-import { TrackList } from './TrackList'
-import { limits } from '../constants/lists'
-import getTopTracks from '../api/getTopTracks'
+import { IconButton } from '../Button'
+import { TrackCard, TrackListCard } from '../ItemCards'
+import { useTimeRange } from '../../hooks'
+import { limits } from '../../constants/lists'
+import getTopTracks from '../../api/getTopTracks'
 
 export function TopTracks() {
     const { timeRange } = useTimeRange()
@@ -73,7 +72,7 @@ export function TopTracks() {
                 ) : (
                     <div className='flex flex-col gap-3'>
                         {topTracks.map((track, index) => (
-                            <TrackList key={index} index={index + 1} track={track} />
+                            <TrackListCard key={index} index={index + 1} track={track} />
                         ))}
                     </div>
                 )}

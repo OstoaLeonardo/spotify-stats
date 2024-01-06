@@ -1,5 +1,4 @@
-import { TopTabs } from '../components/TopTabs'
-import { TimeRangeGroup } from '../components/TimeRangeGroup'
+import { TimeRangeGroup, TopTabs } from '../components'
 
 export default function Top() {
     return (

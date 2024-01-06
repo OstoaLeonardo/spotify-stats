@@ -1,15 +1,8 @@
 import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { useCurrentUser } from './hooks/useCurrentUser'
-import { NavbarHome } from './components/NavbarHome'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Top from './pages/Top'
-import Recently from './pages/Recently'
-import TrackDetails from './pages/TrackDetails'
-import ArtistDetails from './pages/ArtistDetails'
-import PlaylistDetails from './pages/PlaylistDetails'
-import SearchDetails from './pages/SearchDetails'
+import { NavbarHome } from './components'
+import { ArtistDetails, Home, Login, PlaylistDetails, Recently, SearchDetails, Top, TrackDetails } from './pages'
+import { useCurrentUser } from './hooks'
 import getCurrentUser from './api/getCurrentUser'
 
 function App() {

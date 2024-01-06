@@ -1,5 +1,5 @@
 import { Card, CardBody } from '@nextui-org/react'
-import { SpotifyButton } from '../Button/SpotifyButton'
+import { SpotifyButton } from '../Button'
 import { accessUrl } from '../../api/getAuthorization'
 
 export function Footer() {

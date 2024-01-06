@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { HeaderPlaylist } from '../components/PlaylistDetails/HeaderPlaylist'
-import { PlaylistTracks } from '../components/PlaylistDetails/PlaylistTracks'
+import { HeaderPlaylist, PlaylistTracks } from '../components'
 import getPlaylistById from '../api/getPlaylistById'
 
-const PlaylistDetails = () => {
+export default function PlaylistDetails() {
     const { id } = useParams()
     const [playlist, setPlaylist] = useState([])
     const [tracks, setTracks] = useState([])
@@ -31,5 +30,3 @@ const PlaylistDetails = () => {
         </main>
     )
 }
-
-export default PlaylistDetails

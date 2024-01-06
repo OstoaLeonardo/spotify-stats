@@ -33,7 +33,7 @@ const options = {
     },
 }
 
-const FeaturesChart = ({ features }) => {
+export function FeaturesChart({ features }) {
     const data = {
         labels: [
             'Danceable',
@@ -56,5 +56,3 @@ const FeaturesChart = ({ features }) => {
         <Radar data={data} options={options} />
     )
 }
-
-export default FeaturesChart

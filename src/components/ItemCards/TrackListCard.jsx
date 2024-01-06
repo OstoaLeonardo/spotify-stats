@@ -4,7 +4,7 @@ import { Card, CardHeader, CardBody, CardFooter, Image, Button, Link as NextLink
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare, faClock, faPlay } from '@fortawesome/free-solid-svg-icons'
 
-export function TrackList({ index, track, chip }) {
+export function TrackListCard({ index, track, chip }) {
     const [isHovered, setIsHovered] = useState([])
 
     const playPreview = (previewUrl) => {

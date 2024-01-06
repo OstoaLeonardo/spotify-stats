@@ -1,5 +1,5 @@
 import { Image, Skeleton } from '@nextui-org/react'
-import { SpotifyButton } from '../Button/SpotifyButton'
+import { SpotifyButton } from '../Button'
 
 export function HeaderTrack({ track }) {
     const isLoaded = track.id ? true : false

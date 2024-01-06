@@ -1,4 +1,4 @@
-import { RecentlyTracks } from '../components/RecentlyTracks'
+import { RecentlyTracks } from '../components'
 
 export default function RecentlyPlayed() {
     return (

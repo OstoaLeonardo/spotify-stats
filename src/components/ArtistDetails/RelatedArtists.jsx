@@ -1,5 +1,5 @@
 import { CircularProgress } from '@nextui-org/react'
-import { ArtistCard } from '../ArtistCard'
+import { ArtistCard } from '../ItemCards'
 
 export function RelatedArtists({ artists }) {
     return (

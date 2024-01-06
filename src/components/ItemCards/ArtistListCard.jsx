@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, CardFooter, Image, Button, Link as NextLink
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
-export function ArtistList({ index, artist }) {
+export function ArtistListCard({ index, artist }) {
     return (
         <Card
             radius='lg'

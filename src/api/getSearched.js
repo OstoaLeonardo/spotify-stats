@@ -38,10 +38,10 @@ const formatTracks = (search) => {
     return tracks.items.map((track) => {
         return {
             id: track.id,
-            title: track.name,
-            artist: track.artists.map((artist) => artist.name).join(', '),
-            albumImageUrl: track.album.images[1].url,
-            trackUrl: track.external_urls.spotify,
+            name: track.name,
+            artists: track.artists.map((artist) => artist.name).join(', '),
+            image: track.album.images[1].url,
+            url: track.external_urls.spotify,
         };
     });
 }
@@ -52,9 +52,9 @@ const formatAlbums = (search) => {
     return albums.items.map((album) => {
         return {
             id: album.id,
-            title: album.name,
-            artist: album.artists.map((artist) => artist.name).join(', '),
-            albumImageUrl: album.images[1].url,
+            name: album.name,
+            artists: album.artists.map((artist) => artist.name).join(', '),
+            image: album.images[1].url,
         };
     });
 }
@@ -78,7 +78,7 @@ const formatPlaylists = (search) => {
         return {
             id: playlist.id,
             title: playlist.name,
-            albumImageUrl: playlist.images[1]?.url || playlist.images[0].url,
+            image: playlist.images[1]?.url || playlist.images[0].url,
         };
     });
 }

@@ -1,5 +1,5 @@
 import { Image, Skeleton } from '@nextui-org/react'
-import { SpotifyButton } from '../Button/SpotifyButton'
+import { SpotifyButton } from '../Button'
 
 export function HeaderPlaylist({ playlist }) {
     const isLoaded = playlist.id ? true : false

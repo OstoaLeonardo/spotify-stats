@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useTimeRange } from '../hooks/useTimeRange'
+import { useTimeRange } from '../../hooks/useTimeRange'
 import { Card, CardHeader, CardBody, Select, SelectItem, CircularProgress } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
-import { IconButton } from './Button/IconButton'
-import { ArtistCard } from './ArtistCard'
-import { ArtistList } from './ArtistList'
-import { limits } from '../constants/lists'
-import getTopArtists from '../api/getTopArtists'
+import { IconButton } from '../Button'
+import { ArtistCard, ArtistListCard } from '../ItemCards'
+import { limits } from '../../constants/lists'
+import getTopArtists from '../../api/getTopArtists'
 
 export function TopArtists() {
     const { timeRange } = useTimeRange()
@@ -73,7 +72,7 @@ export function TopArtists() {
                 ) : (
                     <div className='flex flex-col gap-3'>
                         {topArtists.map((artist, index) => (
-                            <ArtistList key={index} index={index + 1} artist={artist} />
+                            <ArtistListCard key={index} index={index + 1} artist={artist} />
                         ))}
                     </div>
                 )}

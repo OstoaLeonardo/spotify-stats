@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { Button, Card, CardBody, CardHeader, CircularProgress } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
-import { TrackCard } from '../TrackCard'
-import { TrackList } from '../TrackList'
+import { TrackCard, TrackListCard } from '../ItemCards'
 
 export function PlaylistTracks({ tracks }) {
     const [modeList, setModeList] = useState(true)
@@ -46,7 +45,7 @@ export function PlaylistTracks({ tracks }) {
                     ) : (
                         <div className='flex flex-col gap-3'>
                             {tracks.map((track, index) => (
-                                <TrackList key={index} index={index + 1} track={track} />
+                                <TrackListCard key={index} index={index + 1} track={track} />
                             ))}
                         </div>
                     )}

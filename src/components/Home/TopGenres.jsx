@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useTimeRange } from '../../hooks/useTimeRange'
-import { TopItemCard } from '../TopItemCard/TopItemCard'
+import { TopItemCard } from '../TopItemCard'
+import { useTimeRange } from '../../hooks'
 import getTopArtists from '../../api/getTopArtists'
 
 export function TopGenres() {

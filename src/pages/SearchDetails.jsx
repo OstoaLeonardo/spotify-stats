@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Avatar, Card, CardBody, CardHeader, Tab, Tabs } from '@nextui-org/react'
-import { TrackCard } from '../components/TrackCard'
-import { TrackList } from '../components/TrackList'
-import { ArtistCard } from '../components/ArtistCard'
-import { PlaylistCard } from '../components/PlaylistCard'
-import { ContainerCard } from '../components/ContainerCard'
+import { TrackCard, TrackListCard, ArtistCard, PlaylistCard, ContainerCard } from '../components'
 import getSearched from '../api/getSearched'
 
-const SearchDetails = () => {
+export default function SearchDetails() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [searchResults, setSearchResults] = useState([])
     const [tabSelected, setTabSelected] = useState('all')
@@ -26,18 +22,24 @@ const SearchDetails = () => {
         }
     }
 
+    const clasNames = {
+        tab: 'h-10',
+        cursor: 'w-full bg-guppie-green/10 rounded-xl',
+        tabContent: 'text-sm text-white font-medium group-data-[selected=true]:text-guppie-green',
+    }
+
     return (
         <main className='min-h-screen flex flex-col items-center p-6'>
             <section className='w-full max-w-5xl md:max-w-5xl xl:max-w-7xl space-y-4'>
                 <Tabs
                     color='success'
-                    variant='underlined'
+                    variant='light'
                     aria-label='Options'
+                    classNames={clasNames}
                     selectedKey={tabSelected}
                     onSelectionChange={setTabSelected}
-                    className='w-full font-semibold'
                 >
-                    <Tab key='all' title='All' className='text-base'>
+                    <Tab key='all' title='All'>
                         <div className='grid grid-cols-12 shadow-none gap-4'>
                             <Card className='col-span-full md:col-span-4 shadow-none p-4'>
                                 <CardHeader className='px-3'>
@@ -68,7 +70,7 @@ const SearchDetails = () => {
                                 <CardBody className='gap-2 p-3'>
                                     {searchResults.tracks && (
                                         searchResults.tracks.slice(0, 3).map((track, index) => (
-                                            <TrackList key={index} track={track} />
+                                            <TrackListCard key={index} track={track} />
                                         ))
                                     )}
                                 </CardBody>
@@ -117,7 +119,7 @@ const SearchDetails = () => {
                             </Card>
                         </div>
                     </Tab>
-                    <Tab key='track' title='Tracks' className='text-base' >
+                    <Tab key='track' title='Tracks' >
                         <ContainerCard title='Tracks'>
                             {searchResults.tracks && (
                                 searchResults.tracks.map((track, index) => (
@@ -126,7 +128,7 @@ const SearchDetails = () => {
                             )}
                         </ContainerCard>
                     </Tab>
-                    <Tab key='album' title='Albums' className='text-base'>
+                    <Tab key='album' title='Albums'>
                         <ContainerCard title='Albums'>
                             {searchResults.albums && (
                                 searchResults.albums.map((album, index) => (
@@ -135,7 +137,7 @@ const SearchDetails = () => {
                             )}
                         </ContainerCard>
                     </Tab>
-                    <Tab key='artist' title='Artists' className='text-base'>
+                    <Tab key='artist' title='Artists'>
                         <ContainerCard title='Artists'>
                             {searchResults.artists && (
                                 searchResults.artists.map((artist, index) => (
@@ -144,7 +146,7 @@ const SearchDetails = () => {
                             )}
                         </ContainerCard>
                     </Tab>
-                    <Tab key='playlist' title='Playlists' className='text-base'>
+                    <Tab key='playlist' title='Playlists'>
                         <ContainerCard title='Playlists'>
                             {searchResults.playlists && (
                                 searchResults.playlists.map((playlist, index) => (
@@ -158,5 +160,3 @@ const SearchDetails = () => {
         </main>
     )
 }
-
-export default SearchDetails

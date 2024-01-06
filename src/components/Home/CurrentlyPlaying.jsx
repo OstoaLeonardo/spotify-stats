@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
+import { Card, CardBody, Image, Button, Progress, CircularProgress, Chip } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackwardStep, faCircle, faForwardStep, faHeart, faPause, faRepeat } from '@fortawesome/free-solid-svg-icons'
-import { Card, CardBody, Image, Button, Progress, CircularProgress, Chip } from '@nextui-org/react'
 import getCurrentlyPlaying from '../../api/getCurrentlyPlaying'
 
 export function CurrentlyPlaying() {

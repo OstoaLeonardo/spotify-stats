@@ -1,12 +1,4 @@
-import { TimeRangeGroup } from '../components/TimeRangeGroup'
-import { Header } from '../components/Home/Header'
-import { RecentlyPlayed } from '../components/Home/RecentlyPlayed'
-import { CurrentlyPlaying } from '../components/Home/CurrentlyPlaying'
-import { TopTrack } from '../components/Home/TopTrack'
-import { TopGenres } from '../components/Home/TopGenres'
-import { Playlists } from '../components/Home/Playlists'
-import { TopTracks } from '../components/TopTracks'
-import { TopArtists } from '../components/TopArtists'
+import { Header, RecentlyPlayed, CurrentlyPlaying, TopTrack, TopTracks, TopArtists, TopGenres, Playlists, TimeRangeGroup } from '../components'
 
 export default function Home() {
     return (

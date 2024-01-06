@@ -1,6 +1,4 @@
-import { Landing } from '../components/Login/Landing'
-import { Advantages } from '../components/Login/Advantages'
-import { Footer } from '../components/Login/Footer'
+import { Landing, Advantages, Footer } from '../components'
 
 export default function Login() {
     return (

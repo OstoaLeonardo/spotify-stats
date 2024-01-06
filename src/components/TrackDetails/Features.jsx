@@ -1,5 +1,5 @@
 import { CircularProgress, Progress } from '@nextui-org/react'
-import FeaturesChart from './FeaturesChart'
+import { FeaturesChart } from './FeaturesChart'
 
 function FeatureCard({ title, children }) {
     const isLoaded = children ? true : false

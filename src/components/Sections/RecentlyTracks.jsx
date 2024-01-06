@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react'
 import { Card, CardBody, CardHeader, CircularProgress, Select, SelectItem } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
-import { IconButton } from './Button/IconButton'
-import { TrackCard } from './TrackCard'
-import { TrackList } from './TrackList'
-import { limits } from '../constants/lists'
-import getRecentlyPlayed from '../api/getRecentlyPlayed'
+import { IconButton } from '../Button'
+import { TrackCard, TrackListCard } from '../ItemCards'
+import { limits } from '../../constants/lists'
+import getRecentlyPlayed from '../../api/getRecentlyPlayed'
 
 export function RecentlyTracks() {
     const [recentlyTracks, setRecentlyTracks] = useState([])
@@ -101,7 +100,7 @@ export function RecentlyTracks() {
                 ) : (
                     <div className='flex flex-col gap-3'>
                         {recentlyTracks.map((track, index) => (
-                            <TrackList key={index} index={index + 1} track={track} chip={getWhenWasPlayed(track.playedAt)} />
+                            <TrackListCard key={index} index={index + 1} track={track} chip={getWhenWasPlayed(track.playedAt)} />
                         ))}
                     </div>
                 )}
