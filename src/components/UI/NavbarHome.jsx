@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as NextLink, Input, Image } from '@nextui-org/react'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
+import { SpotifyButton } from '../Button'
 import { SearchInput } from '../Search'
 import { useCurrentUser } from '../../hooks'
-import { accessUrl } from '../../api/getAuthorization'
+import { logIn, logOut } from '../../api/getAuth'
 import { Logo } from '../../assets/icons'
 
 const menuItems = [
@@ -95,24 +95,19 @@ export function NavbarHome() {
                                     <p className='text-guppie-green font-semibold'>Logged in as</p>
                                     <p className='font-semibold'>{currentUser.email}</p>
                                 </DropdownItem>
-                                <DropdownItem key='logout' color='danger' startContent={<FontAwesomeIcon icon={faSignOut} />} onClick={signOut}>
+                                <DropdownItem key='logout' color='danger' startContent={<FontAwesomeIcon icon={faSignOut} />} onClick={logOut}>
                                     Log Out
                                 </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </NavbarContent>
                 ) : (
-                    <Button
-                        size='lg'
-                        as={NextLink}
-                        variant='flat'
-                        color='success'
-                        href={accessUrl}
-                        className='hidden sm:flex font-bold'
-                        startContent={<FontAwesomeIcon className='w-5 h-5' icon={faSpotify} />}
+                    <SpotifyButton
+                        isFlat
+                        onPress={logIn}
                     >
                         Log in with Spotify
-                    </Button>
+                    </SpotifyButton>
                 )}
             </NavbarContent>
 
