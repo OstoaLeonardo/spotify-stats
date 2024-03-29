@@ -1,18 +1,14 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useInView } from 'framer-motion'
 import { Image, CircularProgress } from '@nextui-org/react'
 import { TopItemCard } from '../TopItemCard'
 import { LinkButton } from '../Button'
 import { useTimeRange } from '../../hooks'
 import getTopTracks from '../../api/getTopTracks'
-import confetti from 'canvas-confetti'
 
 export function TopTrack() {
     const { timeRange } = useTimeRange()
     const [topTrack, setTopTrack] = useState([])
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true })
 
     useEffect(() => {
         async function fetchTopTrack() {
@@ -23,18 +19,8 @@ export function TopTrack() {
         fetchTopTrack()
     }, [timeRange])
 
-    useEffect(() => {
-        if (isInView) {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 1 }
-            })
-        }
-    }, [isInView])
-
     return (
-        <section ref={ref} className='relative w-full h-full'>
+        <section className='relative w-full h-full'>
             <Link href={'/track/' + topTrack.id}>
                 <TopItemCard title='Your Top Track'>
                     {topTrack.image === undefined
